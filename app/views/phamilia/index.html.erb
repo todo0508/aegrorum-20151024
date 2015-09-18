@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DaiwaBase</title>
+
+</head>
+<body>
+<h1>住宅エネルギー</h1>
+<h2>蓄電と放電の関係</h2>
+<%= line_chart @output.each do |mau|
+  {:name => mau.name, :data => mau.data}
+end %>
+<h2>分電盤の消費電力</h2>
+<%= line_chart @output1.each do |mau|
+  {:name => mau.name, :data => mau.data}
+end %>
+<h2>ガス使用量</h2>
+<%= line_chart @output2.each do |mau|
+  {:name => mau.name, :data => mau.data}
+end %>
+<h2>水道使用量</h2>
+<%= line_chart @output3.each do |mau|
+  {:name => mau.name, :data => mau.data}
+end %>
+
+<h1>太陽光発電の発電電力量</h1>
+<%= column_chart @graph_data %>
+<h1>太陽光発電の売却電力量</h1>
+<%= column_chart @graph_data2 %>
+<h1>蓄電池の充電電力量</h1>
+<%= column_chart @graph_data3 %>
+<h1>蓄電池の放電電力量</h1>
+<%= column_chart @graph_data4 %>
+
+
+
+</body>
+</html>

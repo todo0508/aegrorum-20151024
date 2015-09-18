@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DaiwaBase</title>
+</head>
+<body>
+<h1>住宅エネルギー</h1>
+<p>
+<form name="test">
+	<input type="button" name="open_door" value="エアコン動作状態取得" onClick="kakunin(1)">
+	<input type="button" name="close_door" value="エアコン電源ON" onClick="kakunin(2)">
+	<input type="button" name="close_door" value="エアコン電源OFF" onClick="kakunin(3)">
+	<input type="button" name="close_door" value="エアコン自動" onClick="kakunin(4)">
+	<input type="button" name="close_door" value="エアコン冷房" onClick="kakunin(5)">
+	<input type="button" name="close_door" value="エアコン暖房" onClick="kakunin(6)">
+	<input type="button" name="close_door" value="エアコン除湿" onClick="kakunin(7)">
+	<input type="button" name="close_door" value="エアコン送風" onClick="kakunin(8)">
+	<br>
+	<input type="button" name="close_door" value="エアコン設定温度取得" onClick="kakunin(9)">
+	<input type="button" name="close_door" value="エアコン室内温度１７" onClick="kakunin(10)">
+	<input type="button" name="close_door" value="エアコン室内温度２８" onClick="kakunin(11)">
+	<input type="button" name="close_door" value="エアコン室内温度３２" onClick="kakunin(12)">
+	<input type="button" name="close_door" value="エアコン湿度設定" onClick="kakunin(13)">
+	<br>
+	<input type="button" name="close_door" value="室内温度取得" onClick="kakunin(14)">
+	<input type="button" name="close_door" value="外気温度取得" onClick="kakunin(15)">
+	<br>
+	<input type="button" name="close_door" value="照明電源状態取得" onClick="kakunin(16)">
+	<input type="button" name="close_door" value="照明電源ON" onClick="kakunin(17)">
+	<input type="button" name="close_door" value="照明電源OFF" onClick="kakunin(18)">
+	<br>
+	<input type="button" name="close_door" value="電気錠状態取得" onClick="kakunin(19)">
+	<input type="button" name="close_door" value="電気錠機器名" onClick="kakunin(20)">
+	<input type="button" name="close_door" value="電気錠設定ON" onClick="kakunin(21)">
+	<input type="button" name="close_door" value="電気錠設定OFF" onClick="kakunin(22)">
+	<input type="button" name="close_door" value="接続機器名" onClick="kakunin(23)">
+	<br>
+	<input type="button" name="close_door" value="電気シャッター状態取得" onClick="kakunin(24)">
+	<input type="button" name="close_door" value="電気シャッター機器名" onClick="kakunin(25)">
+	<input type="button" name="close_door" value="電気シャッター設定ON" onClick="kakunin(26)">
+	<input type="button" name="close_door" value="電気シャッター設定OFF" onClick="kakunin(27)">
+	<input type="button" name="close_door" value="接続機器名" onClick="kakunin(28)">
+	<br>
+	<input type="button" name="close_door" value="電気窓状態取得" onClick="kakunin(29)">
+	<input type="button" name="close_door" value="電気窓機器名" onClick="kakunin(30)">
+	<input type="button" name="close_door" value="電気窓設定ON" onClick="kakunin(31)">
+	<input type="button" name="close_door" value="電気窓設定OFF" onClick="kakunin(32)">
+	<input type="button" name="close_door" value="接続機器名" onClick="kakunin(33)">
+	<br>
+</form>
+</p>
+
+
+<script>
+
+function XMLHttpRequestCreate() {
+	try {
+		return new XMLHttpRequest();
+	}catch(e){}
+	try {
+		return new ActiveXObject('MSXML2.XMLHTTP.6.0');
+	}catch(e){}
+	try {
+		return new ActiveXObject('MSXML2.XMLHTTP.3.0');
+	}catch(e){}
+	try {
+		return new ActiveXObject('MSXML2.XMLHTTP');
+	}catch(e){}
+
+	return null;
+}
+
+function kakunin(btnNo){
+	var url = "send_message?type="+btnNo;
+	var send_data = null;
+	var xhr = XMLHttpRequestCreate();
+	xhr.open("POST", url);
+	xhr.send(send_data);
+}
+
+</script>
+</body>
+</html>
