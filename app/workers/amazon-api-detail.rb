@@ -3,8 +3,8 @@ require 'amazon/ecs'
 
 Amazon::Ecs.options = {
 	:associate_tag => 'sampleapp-22',
-	:AWS_access_key_id => 'AKIAIUCLRVFDYYTYEA7Q',
-	:AWS_secret_key => 'z+ro+NbDpdRX+cxqdl3eIeBMhG6Oi0xeD/hDN5sT'
+	:AWS_access_key_id => 'hoge',
+	:AWS_secret_key => 'z+ro+NbDpdRX+hoge/hDN5sT'
 }
 
 # 商品検索
