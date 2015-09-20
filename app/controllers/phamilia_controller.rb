@@ -281,6 +281,9 @@ class PhamiliaController < ApplicationController
         PhamiliaBackend::CollectHouse.autowindows_off
       when "33"
         PhamiliaBackend::CollectHouse.get_autowindows_connect_name
+
+      when "100"
+        TwilioBackend::CollectHouse.control_voip_phone
       end
 
       puts "SUCCESS1!!"
