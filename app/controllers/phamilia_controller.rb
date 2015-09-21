@@ -252,13 +252,13 @@ class PhamiliaController < ApplicationController
       when "18"
         PhamiliaBackend::CollectHouse.get_led_connect_name
       when "19"
-        PhamiliaBackend::CollectHouse.get_autoshutter_sts
+        PhamiliaBackend::CollectHouse.get_autodoor_sts
       when "20"
-        PhamiliaBackend::CollectHouse.get_autoshutter_name
+        PhamiliaBackend::CollectHouse.get_autodoor_name
       when "21"
-        PhamiliaBackend::CollectHouse.autoshutter_on
+        PhamiliaBackend::CollectHouse.autodoor_on
       when "22"
-        PhamiliaBackend::CollectHouse.autoshutter_off
+        PhamiliaBackend::CollectHouse.autodoor_off
       when "23"
         PhamiliaBackend::CollectHouse.get_autodoor_connect_name
       when "24"
