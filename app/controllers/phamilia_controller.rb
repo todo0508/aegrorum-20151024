@@ -250,7 +250,7 @@ class PhamiliaController < ApplicationController
       when "17"
         PhamiliaBackend::CollectHouse.led_off
       when "18"
-        PhamiliaBackend::CollectHouse.get_led_connect_name
+        PhamiliaBackend::CollectHouse.get_led_sts
       when "19"
         PhamiliaBackend::CollectHouse.get_autodoor_sts
       when "20"
@@ -282,13 +282,21 @@ class PhamiliaController < ApplicationController
       when "33"
         PhamiliaBackend::CollectHouse.get_autowindows_connect_name
 
+      when "50"
+        PhamiliaBackend::CollectHouse.all_incoming_mode
+      when "51"
+        PhamiliaBackend::CollectHouse.all_outgoing_mode
+
       when "100"
         TwilioBackend::CollectHouse.control_voip_phone
       end
-
-      puts "SUCCESS1!!"
     end
   end
 
+  def download
+      filepath = Rails.root.join('app', 'pdfs', 'hoge.pdf')
+      stat = File::stat(filepath)
+      send_file(filepath, :filename => 'hoge.pdf', :length => stat.size)
+  end
 
 end
