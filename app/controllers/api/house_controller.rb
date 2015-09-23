@@ -8,83 +8,83 @@ module Api
 		    if params["type"]
 		      case params["type"]
 		      when "1"
-		        PhamiliaBackend::CollectHouse.get_operationStatus
+		        PhamiliaBackend::ControlAirConditioner.get_operationStatus
 		        xml_doc = Nokogiri::XML(res)
 		        value = xml_doc.xpath("//resultset/dataset/data/value[@type='value']").xpath("//value").text
 		      when "2"
-		        PhamiliaBackend::CollectHouse.set_aircondition_on
+		        PhamiliaBackend::ControlAirConditioner.set_aircondition_on
 		      when "3"
-		        PhamiliaBackend::CollectHouse.set_aircondition_off
+		        PhamiliaBackend::ControlAirConditioner.set_aircondition_off
 		      when "4"
-		        PhamiliaBackend::CollectHouse.set_aircondition_auto
+		        PhamiliaBackend::ControlAirConditioner.set_aircondition_auto
 		      when "5"
-		        PhamiliaBackend::CollectHouse.set_aircondition_cooling
+		        PhamiliaBackend::ControlAirConditioner.set_aircondition_cooling
 		      when "6"
-		        PhamiliaBackend::CollectHouse.set_aircondition_heating
+		        PhamiliaBackend::ControlAirConditioner.set_aircondition_heating
 		      when "7"
-		        PhamiliaBackend::CollectHouse.set_aircondition_dehumidification
+		        PhamiliaBackend::ControlAirConditioner.set_aircondition_dehumidification
 		      when "8"
-		        PhamiliaBackend::CollectHouse.set_aircondition_ventilation
+		        PhamiliaBackend::ControlAirConditioner.set_aircondition_ventilation
 		      when "9"
-		        PhamiliaBackend::CollectHouse.get_aircondition_temperature
+		        PhamiliaBackend::ControlAirConditioner.get_aircondition_temperature
 		      when "10"
-		        PhamiliaBackend::CollectHouse.set_temperature_17
+		        PhamiliaBackend::ControlAirConditioner.set_temperature_17
 		      when "11"
-		        PhamiliaBackend::CollectHouse.set_temperature_28
+		        PhamiliaBackend::ControlAirConditioner.set_temperature_28
 		      when "12"
-		        PhamiliaBackend::CollectHouse.set_temperature_32
+		        PhamiliaBackend::ControlAirConditioner.set_temperature_32
 		      when "13"
-		        PhamiliaBackend::CollectHouse.get_aircondition_humidity
+		        PhamiliaBackend::ControlAirConditioner.get_aircondition_humidity
 		      when "14"
-		        PhamiliaBackend::CollectHouse.get_indoorTemperature
+		        PhamiliaBackend::GetTemprature.get_indoorTemperature
 		        xml_doc = Nokogiri::XML(res)
 		        value = xml_doc.xpath("//resultset/dataset/data/value[@type='value']").xpath("//value").text
 		      when "15"
-		        PhamiliaBackend::CollectHouse.get_outdoorTemperature
+		        PhamiliaBackend::GetTemprature.get_outdoorTemperature
 		        xml_doc = Nokogiri::XML(res)
 		        value = xml_doc.xpath("//resultset/dataset/data/value[@type='value']").xpath("//value").text
 		      when "16"
-		        PhamiliaBackend::CollectHouse.led_on
+		        PhamiliaBackend::ControlLED.led_on
 		      when "17"
-		        PhamiliaBackend::CollectHouse.led_off
+		        PhamiliaBackend::ControlLED.led_off
 		      when "18"
-		        PhamiliaBackend::CollectHouse.get_led_sts
+		        PhamiliaBackend::ControlLED.get_led_sts
 		      when "19"
-		        res = PhamiliaBackend::CollectHouse.get_autodoor_sts
+		        res = PhamiliaBackend::ControlAutoDoor.get_autodoor_sts
 		        xml_doc = Nokogiri::XML(res)
 		        value = xml_doc.xpath("//resultset/dataset/data/value[@type='value']").xpath("//value").text
 		      when "20"
-		        PhamiliaBackend::CollectHouse.get_autodoor_name
+		        PhamiliaBackend::ControlAutoDoor.get_autodoor_name
 		      when "21"
-		        PhamiliaBackend::CollectHouse.autodoor_on
+		        PhamiliaBackend::ControlAutoDoor.autodoor_on
 		      when "22"
-		        PhamiliaBackend::CollectHouse.autodoor_off
+		        PhamiliaBackend::ControlAutoDoor.autodoor_off
 		      when "23"
-		        PhamiliaBackend::CollectHouse.get_autodoor_connect_name
+		        PhamiliaBackend::ControlAutoDoor.get_autodoor_connect_name
 		      when "24"
-		        PhamiliaBackend::CollectHouse.get_autoshutter_sts
+		        PhamiliaBackend::ControlAutoShutter.get_autoshutter_sts
 		        xml_doc = Nokogiri::XML(res)
 		        value = xml_doc.xpath("//resultset/dataset/data/value[@type='value']").xpath("//value").text
 		      when "25"
-		        PhamiliaBackend::CollectHouse.get_autoshutter_name
+		        PhamiliaBackend::ControlAutoShutter.get_autoshutter_name
 		      when "26"
-		        PhamiliaBackend::CollectHouse.autoshutter_on
+		        PhamiliaBackend::ControlAutoShutter.autoshutter_on
 		      when "27"
-		        PhamiliaBackend::CollectHouse.autoshutter_off
+		        PhamiliaBackend::ControlAutoShutter.autoshutter_off
 		      when "28"
-		        PhamiliaBackend::CollectHouse.get_autoshutter_connect_name
+		        PhamiliaBackend::ControlAutoShutter.get_autoshutter_connect_name
 		      when "29"
-		        PhamiliaBackend::CollectHouse.get_autowindows_sts
+		        PhamiliaBackend::ControlAutoWindow.get_autowindows_sts
 		        xml_doc = Nokogiri::XML(res)
 		        value = xml_doc.xpath("//resultset/dataset/data/value[@type='value']").xpath("//value").text
 		      when "30"
-		        PhamiliaBackend::CollectHouse.get_autowindows_name
+		        PhamiliaBackend::ControlAutoWindow.get_autowindows_name
 		      when "31"
-		        PhamiliaBackend::CollectHouse.autowindows_on
+		        PhamiliaBackend::ControlAutoWindow.autowindows_on
 		      when "32"
-		        PhamiliaBackend::CollectHouse.autowindows_off
+		        PhamiliaBackend::ControlAutoWindow.autowindows_off
 		      when "33"
-		        PhamiliaBackend::CollectHouse.get_autowindows_connect_name
+		        PhamiliaBackend::ControlAutoWindow.get_autowindows_connect_name
 
 		      when "100"
 		        TwilioBackend::CollectHouse.control_voip_phone

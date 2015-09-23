@@ -24,7 +24,7 @@ class PhamiliaController < ApplicationController
   	@graph_data30 = []
 
   	# 太陽光発電の発電電力量
-  	response = PhamiliaBackend::CollectHouse.solarPowerSelling
+  	response = PhamiliaBackend::SolarEnergy.solarPowerSelling_30min
   	doc = REXML::Document.new(response)
   	doc.elements.each("resultset/dataset/data") do |element|
 	  	temp2 = []
@@ -33,7 +33,7 @@ class PhamiliaController < ApplicationController
   		@graph_data.push(temp2)
   	end
   	# 太陽光発電の売却電力量
-  	response = PhamiliaBackend::CollectHouse.solarPower
+  	response = PhamiliaBackend::SolarEnergy.solarPower_30min
   	doc = REXML::Document.new(response)
   	doc.elements.each("resultset/dataset/data") do |element|
 	  	temp2 = []
@@ -43,7 +43,7 @@ class PhamiliaController < ApplicationController
   	end
 
   	# 蓄電池の充電電力量
-  	response = PhamiliaBackend::CollectHouse.batteryPowerCharge
+  	response = PhamiliaBackend::BatteryPowerEnergy.batteryPowerCharge_30min
   	doc = REXML::Document.new(response)
   	doc.elements.each("resultset/dataset/data") do |element|
 	  	temp2 = []
@@ -53,7 +53,7 @@ class PhamiliaController < ApplicationController
   	end
 
   	# 蓄電池の放電電力量
-  	response = PhamiliaBackend::CollectHouse.batteryPowerDischarge
+  	response = PhamiliaBackend::BatteryPowerEnergy.batteryPowerDischarge_30min
   	doc = REXML::Document.new(response)
   	doc.elements.each("resultset/dataset/data") do |element|
 	  	temp2 = []
@@ -63,7 +63,7 @@ class PhamiliaController < ApplicationController
   	end
 
   	# エネファーム
-  	response = PhamiliaBackend::CollectHouse.fuelCellPower
+  	response = PhamiliaBackend::FuelCellEnergy.fuelCellPower_30min
   	doc = REXML::Document.new(response)
   	doc.elements.each("resultset/dataset/data") do |element|
 	  	temp2 = []
@@ -73,7 +73,7 @@ class PhamiliaController < ApplicationController
   	end
 
   	# 分電盤
-  	response = PhamiliaBackend::CollectHouse.branchCircuitPower_1
+  	response = PhamiliaBackend::BranchCircuit.branchCircuitPower1_30min
   	doc = REXML::Document.new(response)
   	doc.elements.each("resultset/dataset/data") do |element|
 	  	temp2 = []
@@ -81,7 +81,7 @@ class PhamiliaController < ApplicationController
   		temp2.push(element.elements['value'].text)
   		@graph_data21.push(temp2)
   	end
-  	response = PhamiliaBackend::CollectHouse.branchCircuitPower_2
+  	response = PhamiliaBackend::BranchCircuit.branchCircuitPower2_30min
   	doc = REXML::Document.new(response)
   	doc.elements.each("resultset/dataset/data") do |element|
 	  	temp2 = []
@@ -89,7 +89,7 @@ class PhamiliaController < ApplicationController
   		temp2.push(element.elements['value'].text)
   		@graph_data22.push(temp2)
   	end
-  	response = PhamiliaBackend::CollectHouse.branchCircuitPower_3
+  	response = PhamiliaBackend::BranchCircuit.branchCircuitPower3_30min
   	doc = REXML::Document.new(response)
   	doc.elements.each("resultset/dataset/data") do |element|
 	  	temp2 = []
@@ -97,7 +97,7 @@ class PhamiliaController < ApplicationController
   		temp2.push(element.elements['value'].text)
   		@graph_data23.push(temp2)
   	end
-  	response = PhamiliaBackend::CollectHouse.branchCircuitPower_4
+  	response = PhamiliaBackend::BranchCircuit.branchCircuitPower4_30min
   	doc = REXML::Document.new(response)
   	doc.elements.each("resultset/dataset/data") do |element|
 	  	temp2 = []
@@ -105,7 +105,7 @@ class PhamiliaController < ApplicationController
   		temp2.push(element.elements['value'].text)
   		@graph_data24.push(temp2)
   	end
-  	response = PhamiliaBackend::CollectHouse.branchCircuitPower_5
+  	response = PhamiliaBackend::BranchCircuit.branchCircuitPower5_30min
   	doc = REXML::Document.new(response)
   	doc.elements.each("resultset/dataset/data") do |element|
 	  	temp2 = []
@@ -113,7 +113,7 @@ class PhamiliaController < ApplicationController
   		temp2.push(element.elements['value'].text)
   		@graph_data25.push(temp2)
   	end
-  	response = PhamiliaBackend::CollectHouse.branchCircuitPower_6
+  	response = PhamiliaBackend::BranchCircuit.branchCircuitPower6_30min
   	doc = REXML::Document.new(response)
   	doc.elements.each("resultset/dataset/data") do |element|
 	  	temp2 = []
@@ -121,7 +121,7 @@ class PhamiliaController < ApplicationController
   		temp2.push(element.elements['value'].text)
   		@graph_data26.push(temp2)
   	end
-  	response = PhamiliaBackend::CollectHouse.branchCircuitPower_7
+  	response = PhamiliaBackend::BranchCircuit.branchCircuitPower7_30min
   	doc = REXML::Document.new(response)
   	doc.elements.each("resultset/dataset/data") do |element|
 	  	temp2 = []
@@ -129,7 +129,7 @@ class PhamiliaController < ApplicationController
   		temp2.push(element.elements['value'].text)
   		@graph_data27.push(temp2)
   	end
-  	response = PhamiliaBackend::CollectHouse.branchCircuitPower_8
+  	response = PhamiliaBackend::BranchCircuit.branchCircuitPower8_30min
   	doc = REXML::Document.new(response)
   	doc.elements.each("resultset/dataset/data") do |element|
 	  	temp2 = []
@@ -137,7 +137,7 @@ class PhamiliaController < ApplicationController
   		temp2.push(element.elements['value'].text)
   		@graph_data28.push(temp2)
   	end
-  	response = PhamiliaBackend::CollectHouse.branchCircuitPower_9
+  	response = PhamiliaBackend::BranchCircuit.branchCircuitPower9_30min
   	doc = REXML::Document.new(response)
   	doc.elements.each("resultset/dataset/data") do |element|
 	  	temp2 = []
@@ -145,7 +145,7 @@ class PhamiliaController < ApplicationController
   		temp2.push(element.elements['value'].text)
   		@graph_data29.push(temp2)
   	end
-  	response = PhamiliaBackend::CollectHouse.branchCircuitPower_10
+  	response = PhamiliaBackend::BranchCircuit.branchCircuitPower10_30min
   	doc = REXML::Document.new(response)
   	doc.elements.each("resultset/dataset/data") do |element|
 	  	temp2 = []
@@ -156,7 +156,7 @@ class PhamiliaController < ApplicationController
 
 
   	# ガス
-  	response = PhamiliaBackend::CollectHouse.gasConsumption
+  	response = PhamiliaBackend::GassEnergy.gasConsumption_30min
   	puts doc = REXML::Document.new(response)
   	doc.elements.each("resultset/dataset/data") do |element|
 	  	temp2 = []
@@ -165,7 +165,7 @@ class PhamiliaController < ApplicationController
   		@graph_data11.push(temp2)
   	end
   	# 水道
-  	response = PhamiliaBackend::CollectHouse.waterConsumption
+  	response = PhamiliaBackend::WaterEnergy.waterConsumption_30min
   	puts doc = REXML::Document.new(response)
   	doc.elements.each("resultset/dataset/data") do |element|
 	  	temp2 = []
@@ -216,76 +216,76 @@ class PhamiliaController < ApplicationController
     if params["type"]
       case params["type"]
       when "1"
-        PhamiliaBackend::CollectHouse.get_operationStatus
+        PhamiliaBackend::ControlAirConditioner.get_operationStatus
       when "2"
-        PhamiliaBackend::CollectHouse.set_aircondition_on
+        PhamiliaBackend::ControlAirConditioner.set_aircondition_on
       when "3"
-        PhamiliaBackend::CollectHouse.set_aircondition_off
+        PhamiliaBackend::ControlAirConditioner.set_aircondition_off
       when "4"
-        PhamiliaBackend::CollectHouse.set_aircondition_auto
+        PhamiliaBackend::ControlAirConditioner.set_aircondition_auto
       when "5"
-        PhamiliaBackend::CollectHouse.set_aircondition_cooling
+        PhamiliaBackend::ControlAirConditioner.set_aircondition_cooling
       when "6"
-        PhamiliaBackend::CollectHouse.set_aircondition_heating
+        PhamiliaBackend::ControlAirConditioner.set_aircondition_heating
       when "7"
-        PhamiliaBackend::CollectHouse.set_aircondition_dehumidification
+        PhamiliaBackend::ControlAirConditioner.set_aircondition_dehumidification
       when "8"
-        PhamiliaBackend::CollectHouse.set_aircondition_ventilation
+        PhamiliaBackend::ControlAirConditioner.set_aircondition_ventilation
       when "9"
-        PhamiliaBackend::CollectHouse.get_aircondition_temperature
+        PhamiliaBackend::ControlAirConditioner.get_aircondition_temperature
       when "10"
-        PhamiliaBackend::CollectHouse.set_temperature_17
+        PhamiliaBackend::ControlAirConditioner.set_temperature_17
       when "11"
-        PhamiliaBackend::CollectHouse.set_temperature_28
+        PhamiliaBackend::ControlAirConditioner.set_temperature_28
       when "12"
-        PhamiliaBackend::CollectHouse.set_temperature_32
+        PhamiliaBackend::ControlAirConditioner.set_temperature_32
       when "13"
-        PhamiliaBackend::CollectHouse.get_aircondition_humidity
+        PhamiliaBackend::ControlAirConditioner.get_aircondition_humidity
       when "14"
-        PhamiliaBackend::CollectHouse.get_indoorTemperature
+        PhamiliaBackend::GetTemprature.get_indoorTemperature
       when "15"
-        PhamiliaBackend::CollectHouse.get_outdoorTemperature
+        PhamiliaBackend::GetTemprature.get_outdoorTemperature
       when "16"
-        PhamiliaBackend::CollectHouse.led_on
+        PhamiliaBackend::ControlLED.led_on
       when "17"
-        PhamiliaBackend::CollectHouse.led_off
+        PhamiliaBackend::ControlLED.led_off
       when "18"
-        PhamiliaBackend::CollectHouse.get_led_sts
+        PhamiliaBackend::ControlLED.get_led_sts
       when "19"
-        PhamiliaBackend::CollectHouse.get_autodoor_sts
+        PhamiliaBackend::ControlAutoDoor.get_autodoor_sts
       when "20"
-        PhamiliaBackend::CollectHouse.get_autodoor_name
+        PhamiliaBackend::ControlAutoDoor.get_autodoor_name
       when "21"
-        PhamiliaBackend::CollectHouse.autodoor_on
+        PhamiliaBackend::ControlAutoDoor.autodoor_on
       when "22"
-        PhamiliaBackend::CollectHouse.autodoor_off
+        PhamiliaBackend::ControlAutoDoor.autodoor_off
       when "23"
-        PhamiliaBackend::CollectHouse.get_autodoor_connect_name
+        PhamiliaBackend::ControlAutoDoor.get_autodoor_connect_name
       when "24"
-        PhamiliaBackend::CollectHouse.get_autoshutter_sts
+        PhamiliaBackend::ControlAutoShutter.get_autoshutter_sts
       when "25"
-        PhamiliaBackend::CollectHouse.get_autoshutter_name
+        PhamiliaBackend::ControlAutoShutter.get_autoshutter_name
       when "26"
-        PhamiliaBackend::CollectHouse.autoshutter_on
+        PhamiliaBackend::ControlAutoShutter.autoshutter_on
       when "27"
-        PhamiliaBackend::CollectHouse.autoshutter_off
+        PhamiliaBackend::ControlAutoShutter.autoshutter_off
       when "28"
-        PhamiliaBackend::CollectHouse.get_autoshutter_connect_name
+        PhamiliaBackend::ControlAutoShutter.get_autoshutter_connect_name
       when "29"
-        PhamiliaBackend::CollectHouse.get_autowindows_sts
+        PhamiliaBackend::ControlAutoWindow.get_autowindows_sts
       when "30"
-        PhamiliaBackend::CollectHouse.get_autowindows_name
+        PhamiliaBackend::ControlAutoWindow.get_autowindows_name
       when "31"
-        PhamiliaBackend::CollectHouse.autowindows_on
+        PhamiliaBackend::ControlAutoWindow.autowindows_on
       when "32"
-        PhamiliaBackend::CollectHouse.autowindows_off
+        PhamiliaBackend::ControlAutoWindow.autowindows_off
       when "33"
-        PhamiliaBackend::CollectHouse.get_autowindows_connect_name
+        PhamiliaBackend::ControlAutoWindow.get_autowindows_connect_name
 
       when "50"
-        PhamiliaBackend::CollectHouse.all_incoming_mode
+        PhamiliaBackend::AgrigateCommand.all_incoming_mode
       when "51"
-        PhamiliaBackend::CollectHouse.all_outgoing_mode
+        PhamiliaBackend::AgrigateCommand.all_outgoing_mode
 
       when "100"
         TwilioBackend::CollectHouse.control_voip_phone
