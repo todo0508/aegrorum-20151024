@@ -23,6 +23,14 @@ class PhamiliaController < ApplicationController
   	@graph_data29 = []
   	@graph_data30 = []
 
+
+    # オープン活用
+    puts OpenWeather::GetWeather.getLatestTokyo
+
+    puts GetElectronicInfo::CollectElectronicInform.getLatestTokyo
+
+
+
   	# 太陽光発電の発電電力量
   	response = PhamiliaBackend::SolarEnergy.solarPowerSelling_30min
   	doc = REXML::Document.new(response)
@@ -209,7 +217,6 @@ class PhamiliaController < ApplicationController
 
   def control_test
   	@article = 3
-
   end
 
   def send_message
