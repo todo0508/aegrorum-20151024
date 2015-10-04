@@ -273,32 +273,37 @@ class PhamiliaController < ApplicationController
         # アカウントステータス:: account_id, status, emotion
         json_data = {:sts1 => 2, :emo1 => 3, :sts2 => 4, :emo2 => 5}
 
-
       when "4"  # ニュース情報を取得
-
+        json_data = {:text => "今日のランチはどこに行きましょうか", :apn => "yahoo.co.jp"}
 
       when "5"  # グルメ情報を取得
+        json_data = {:text => "別府の温泉宿の料理です", :apn => "yahoo.co.jp"}
 
 
       when "6"  # 書籍情報を取得
+        json_data = {:text => "坊ちゃん", :apn => "yahoo.co.jp"}
 
 
       when "7"  # HEMS事業者から取得
+        json_data = {:text => "節電しますね", :apn => "yahoo.co.jp"}
 
 
       when "8"  # 住宅情報（ダイワハウスから取得）
+        json_data = {:sts1 => 2, :emo1 => 3, :sts2 => 4, :emo2 => 5}
 
 
       when "100" # VoIP電話の機能を利用
         response = TwilioBackend::CollectHouse.control_voip_phone
         doc = REXML::Document.new(response)
 
-        value.push(doc.elements['HemsUser/HemsUserFirstName'].text)
-        value.push(doc.elements['HemsUser/HemsUserLastName'].text)
-#        value.push(doc.elements['HemsUser/BuildType'].text)
-#        value.push(doc.elements['HemsUser/BuildOwnerShip'].text)
-        value.push(doc.elements['HemsUser/Latitude'].text)
-        value.push(doc.elements['HemsUser/Longitude'].text)
+        firstname = value.push(doc.elements['HemsUser/HemsUserFirstName'].text)
+        lastname = value.push(doc.elements['HemsUser/HemsUserLastName'].text)
+        buildtype = value.push(doc.elements['HemsUser/BuildType'].text)
+        ownership = value.push(doc.elements['HemsUser/BuildOwnerShip'].text)
+        latitude = value.push(doc.elements['HemsUser/Latitude'].text)
+        longitude = value.push(doc.elements['HemsUser/Longitude'].text)
+
+        json_data = {:firstname => firstname, :lastname => lastname, :buildtype => buildtype, :ownership => ownership}
 
 
       end
