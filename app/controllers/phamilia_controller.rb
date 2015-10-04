@@ -1,3 +1,5 @@
+require 'rexml/document'
+
 class PhamiliaController < ApplicationController
   protect_from_forgery with: :exception
   skip_before_filter :verify_authenticity_token
@@ -219,8 +221,100 @@ class PhamiliaController < ApplicationController
   	@article = 3
   end
 
+  def get_message
+    if params["type"]
+
+      puts "start get_message test!!"
+
+      value = []
+      json_data = {}
+
+      case params["type"]
+      when "1"
+        response = PhamiliaBackend::CollectHouse.home_user
+        doc = REXML::Document.new(response)
+
+        value.push(doc.elements['HemsUser/HemsUserFirstName'].text)
+        value.push(doc.elements['HemsUser/HemsUserLastName'].text)
+        value.push(doc.elements['HemsUser/BuildType'].text)
+        value.push(doc.elements['HemsUser/BuildOwnerShip'].text)
+        value.push(doc.elements['HemsUser/Latitude'].text)
+        value.push(doc.elements['HemsUser/Longitude'].text)
+
+        json_data = {:value => value}
+
+
+      when "2"  # 機器の状態を返却してあげる
+        status = 0
+
+        res = PhamiliaBackend::ControlAutoWindow.get_autowindows_sts
+        xml_doc = Nokogiri::XML(res)
+        value = xml_doc.xpath("//resultset/dataset/data/value[@type='value']").xpath("//value").text
+        if value == "ON"
+          status = 1
+        end
+        res = PhamiliaBackend::ControlAutoShutter.get_autoshutter_sts
+        xml_doc = Nokogiri::XML(res)
+        value = xml_doc.xpath("//resultset/dataset/data/value[@type='value']").xpath("//value").text
+        if value == "ON"
+          status = status + 1
+        end
+        res = PhamiliaBackend::ControlAutoDoor.get_autodoor_sts
+        xml_doc = Nokogiri::XML(res)
+        value = xml_doc.xpath("//resultset/dataset/data/value[@type='value']").xpath("//value").text
+        if value == "ON"
+          status = status + 1
+        end
+
+        json_data = {:equipment => status}
+
+
+      when "3"  # 見守り対象者の状態を返却してあげる
+        # アカウントステータス:: account_id, status, emotion
+        json_data = {:sts1 => 2, :emo1 => 3, :sts2 => 4, :emo2 => 5}
+
+
+      when "4"  # ニュース情報を取得
+
+
+      when "5"  # グルメ情報を取得
+
+
+      when "6"  # 書籍情報を取得
+
+
+      when "7"  # HEMS事業者から取得
+
+
+      when "8"  # 住宅情報（ダイワハウスから取得）
+
+
+      when "100" # VoIP電話の機能を利用
+        response = TwilioBackend::CollectHouse.control_voip_phone
+        doc = REXML::Document.new(response)
+
+        value.push(doc.elements['HemsUser/HemsUserFirstName'].text)
+        value.push(doc.elements['HemsUser/HemsUserLastName'].text)
+#        value.push(doc.elements['HemsUser/BuildType'].text)
+#        value.push(doc.elements['HemsUser/BuildOwnerShip'].text)
+        value.push(doc.elements['HemsUser/Latitude'].text)
+        value.push(doc.elements['HemsUser/Longitude'].text)
+
+
+      end
+
+      puts "end get_message test!!"
+
+      render :json => json_data
+
+    end
+  end
+
+
   def send_message
     if params["type"]
+      value = []
+
       case params["type"]
       when "1"
         PhamiliaBackend::ControlAirConditioner.get_operationStatus
@@ -293,10 +387,31 @@ class PhamiliaController < ApplicationController
         PhamiliaBackend::AgrigateCommand.all_incoming_mode
       when "51"
         PhamiliaBackend::AgrigateCommand.all_outgoing_mode
+      when "52"
+        PhamiliaBackend::AgrigateCommand.power_saving_mode
+      when "53"
+        PhamiliaBackend::AgrigateCommand.equipment_control_mode
+      when "54"
+        PhamiliaBackend::AgrigateCommand.comsumption_control_mode
 
-      when "100"
-        TwilioBackend::CollectHouse.control_voip_phone
+
+      # Batterly Level (Parameters: {"type"=>"60", "battery"=>"-1.000000"})
+      when "60"
+
+      # Batterly Level (Parameters: {"type"=>"61", "battery"=>"Unknown"})
+      when "61"
+
+      # Speed Controller (Parameters: {"type"=>"61", "battery"=>"Unknown"})
+      when "62"
+
+      when "63"
+
+      when "64"
+
+
       end
+      render json: {:value => value}
+
     end
   end
 

@@ -16,15 +16,12 @@ module GetElectronicInfo
 	end
 
   	def self.getLatestTokyo_interval
-	  # 東北電力管轄内の5分間隔で更新される最新の電力使用状況を取得する場合
-      web_command = "http://setsuden.yahooapis.jp/v1/Setsuden/latestPowerUsage?appid=dj0zaiZpPVMzb2F4eERaZG9tYSZzPWNvbnN1bWVyc2VjcmV0Jng9MzI-&area=tohoku&latest=1"
+	  # 東京電力管轄内の5分間隔で更新される最新の電力使用状況を取得する場合
+      web_command = "http://setsuden.yahooapis.jp/v1/Setsuden/latestPowerUsage?appid=dj0zaiZpPVMzb2F4eERaZG9tYSZzPWNvbnN1bWVyc2VjcmV0Jng9MzI-&area=tokyo&latest=1"
       `curl $'#{web_command}'`	  
 	end
 
   end
 
 end
-
-
-
 
