@@ -326,14 +326,14 @@ class PhamiliaController < ApplicationController
         response = PhamiliaBackend::CollectHouse.home_user
         doc = REXML::Document.new(response)
 
-        electricPower = doc.elements['HemsUser/ElectricPowerCompany'].text
+        electricpower = doc.elements['HemsUser/ElectricPowerCompany'].text
         powerplan = doc.elements['HemsUser/PowerPricePlan'].text
         powerplan2 = doc.elements['HemsUser/PowerPricePlan2'].text
         electrictype = doc.elements['HemsUser/AllElectricType'].text
         waterheater = doc.elements['HemsUser/WaterHeater'].text
-        cookngdevice = doc.elements['HemsUser/CookingDevice'].text
+        cookingdevice = doc.elements['HemsUser/CookingDevice'].text
 
-        text_data = '電力会社：'<<electricPower<<',契約プラン：'<<powerplan<<',契約プラン（その他）：'<<powerplan2<<',契約種別：'<<electype<<',給湯器：'<<waterheater<<',調理器具：'<<cookingdevice
+        text_data = '電力会社：'<<electricpower<<',契約プラン：'<<powerplan<<',契約プラン（その他）：'<<powerplan2<<',契約種別：'<<electrictype<<',給湯器：'<<waterheater<<',調理器具：'<<cookingdevice
         json_data = {:text => text_data, :apn => "http://www.chuden.co.jp/smt/"}
 
       when "11"

@@ -549,7 +549,14 @@ module PhamiliaBackend
 
       # エアコン電源ON
       def self.set_aircondition_on
-        web_cmd = "http://192.168.1.8:1024/smart/rest/request?deviceid=lite.aircon_1_1&type=set&key=operationStatus&value=ON"
+        res = get_operationStatus
+        xml_doc = Nokogiri::XML(res)
+        puts value = xml_doc.xpath("//resultset/dataset/data/value[@type='value']").xpath("//value").text
+        if value == "OFF"
+          web_cmd = "http://192.168.1.8:1024/smart/rest/request?deviceid=lite.aircon_1_1&type=set&key=operationStatus&value=ON"
+        else
+          web_cmd = "http://192.168.1.8:1024/smart/rest/request?deviceid=lite.aircon_1_1&type=set&key=operationStatus&value=OFF"
+        end
         `curl $'#{web_cmd}'`
       end
 
@@ -783,7 +790,14 @@ module PhamiliaBackend
   class ControlLED
       # 照明電源ON
       def self.led_on
-        web_cmd = "http://192.168.1.8:1024/smart/rest/request?deviceid=lite.ledLight_1_1&type=codeset&key=80&value=30"
+        res = get_led_sts
+        xml_doc = Nokogiri::XML(res)
+        puts value = xml_doc.xpath("//resultset/dataset/data/value[@type='value']").xpath("//value").text
+        if value == "30"
+          web_cmd = "http://192.168.1.8:1024/smart/rest/request?deviceid=lite.ledLight_1_1&type=codeset&key=80&value=31"
+        else
+          web_cmd = "http://192.168.1.8:1024/smart/rest/request?deviceid=lite.ledLight_1_1&type=codeset&key=80&value=30"
+        end
         `curl $'#{web_cmd}'`
       end
       # 照明電源OFF
@@ -887,17 +901,41 @@ module PhamiliaBackend
       def self.all_incoming_mode
         ControlAirConditioner.set_aircondition_on
         ControlLED.led_on
-        ControlAutoDoor.autodoor_on
-        ControlAutoShutter.autoshutter_on
-        ControlAutoWindow.autowindows_on
+        ControlAutoDoor.autodoor_off
+        ControlAutoShutter.autoshutter_off
+        ControlAutoWindow.autowindows_off
       end
 
       def self.all_outgoing_mode
         ControlAirConditioner.set_aircondition_off
         ControlLED.led_off
-        ControlAutoDoor.autodoor_off
-        ControlAutoShutter.autoshutter_off
-        ControlAutoWindow.autowindows_off
+        ControlAutoDoor.autodoor_on
+        ControlAutoShutter.autoshutter_on
+        ControlAutoWindow.autowindows_on
+      end
+
+      def self.power_saving_mode
+        ControlAirConditioner.set_aircondition_off
+        ControlLED.led_off
+        ControlAutoDoor.autodoor_on
+        ControlAutoShutter.autoshutter_on
+        ControlAutoWindow.autowindows_on
+      end
+
+      def self.equipment_control_mode
+        ControlAirConditioner.set_aircondition_off
+        ControlLED.led_off
+        ControlAutoDoor.autodoor_on
+        ControlAutoShutter.autoshutter_on
+        ControlAutoWindow.autowindows_on
+      end
+
+      def self.comsumption_control_mode
+        ControlAirConditioner.set_aircondition_off
+        ControlLED.led_off
+        ControlAutoDoor.autodoor_on
+        ControlAutoShutter.autoshutter_on
+        ControlAutoWindow.autowindows_on
       end
 
   end
