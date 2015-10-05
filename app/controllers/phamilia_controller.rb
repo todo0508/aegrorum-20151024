@@ -336,6 +336,13 @@ class PhamiliaController < ApplicationController
         text_data = '電力会社：'<<electricPower<<',契約プラン：'<<powerplan<<',契約プラン（その他）：'<<powerplan2<<',契約種別：'<<electype<<',給湯器：'<<waterheater<<',調理器具：'<<cookingdevice
         json_data = {:text => text_data, :apn => "http://www.chuden.co.jp/smt/"}
 
+      when "11"
+        res = PhamiliaBackend::ControlAutoDoor.get_autodoor_sts
+        xml_doc = Nokogiri::XML(res)
+        value = xml_doc.xpath("//resultset/dataset/data/value[@type='value']").xpath("//value").text
+
+        json_data = {:value => value}
+
       when "100" # VoIP電話の機能を利用
         response = TwilioBackend::CollectHouse.control_voip_phone
         doc = REXML::Document.new(response)
