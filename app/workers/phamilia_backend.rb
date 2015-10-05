@@ -559,7 +559,7 @@ module PhamiliaBackend
         `curl $'#{web_cmd}'`
       end
       # エアコン動作状態取得
-      def self.set_aircondition_off
+      def self.set_aircondition_current
         web_cmd = "http://192.168.1.8:1024//smart/rest/request?deviceid=lite.aircon_1_1&type=get&key=currentmode"
         `curl $'#{web_cmd}'`
       end
@@ -887,17 +887,17 @@ module PhamiliaBackend
       def self.all_incoming_mode
         ControlAirConditioner.set_aircondition_on
         ControlLED.led_on
-        ControlAutoDoor.autodoor_off
-        ControlAutoShutter.autoshutter_off
-        ControlAutoWindow.autowindows_off
+        ControlAutoDoor.autodoor_on
+        ControlAutoShutter.autoshutter_on
+        ControlAutoWindow.autowindows_on
       end
 
       def self.all_outgoing_mode
         ControlAirConditioner.set_aircondition_off
         ControlLED.led_off
-        ControlAutoDoor.autodoor_on
-        ControlAutoShutter.autoshutter_on
-        ControlAutoWindow.autowindows_on
+        ControlAutoDoor.autodoor_off
+        ControlAutoShutter.autoshutter_off
+        ControlAutoWindow.autowindows_off
       end
 
   end

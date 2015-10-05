@@ -241,7 +241,7 @@ class PhamiliaController < ApplicationController
         latitude = doc.elements['HemsUser/Latitude'].text
         longitude = doc.elements['HemsUser/Longitude'].text
 
-        json_data = {:firstname => firstname, :lastname => lastname, :buildtype => buildtype, :ownership => ownership}
+        json_data = {:firstname => firstname, :lastname => lastname, :buildtype => buildtype, :ownership => ownership, :latitude => latitude, :longitude => longitude}
 
       when "2"  # 機器の状態を返却してあげる
         status = 0
@@ -270,7 +270,7 @@ class PhamiliaController < ApplicationController
 
       when "3"  # 見守り対象者の状態を返却してあげる
         # アカウントステータス:: account_id, status, emotion
-        json_data = {:sts1 => 2, :emo1 => 3, :desc => "外出中", :sts2 => 4, :emo2 => 5, :emo1 => "在宅中"}
+        json_data = {:sts1 => 2, :emo1 => 3, :desc1 => "外出中", :sts2 => 4, :emo2 => 5, :desc2 => "在宅中", :equipment => 3}
 
       when "4"  # ニュース情報を取得
         json_data = {:text => "今日のランチはどこに行きましょうか", :apn => "http://yahoo.co.jp"}
@@ -278,18 +278,63 @@ class PhamiliaController < ApplicationController
       when "5"  # グルメ情報を取得
         json_data = {:text => "別府の温泉宿の料理です", :apn => "http://yahoo.co.jp"}
 
-
       when "6"  # 書籍情報を取得
         json_data = {:text => "坊ちゃん", :apn => "http://yahoo.co.jp"}
 
-
       when "7"  # HEMS事業者から取得
-        json_data = {:text => "節電しますね", :apn => "http://yahoo.co.jp"}
+        response = PhamiliaBackend::CollectHouse.home_user
+        doc = REXML::Document.new(response)
 
+        firstname = doc.elements['HemsUser/HemsUserFirstName'].text
+        lastname = doc.elements['HemsUser/HemsUserLastName'].text
+        zipcode = doc.elements['HemsUser/ZipCode'].text
+        prefectural = doc.elements['HemsUser/Prefectural'].text
+        municipality = doc.elements['HemsUser/Municipality'].text
+        address1 = doc.elements['HemsUser/Address1'].text
+        internettype = doc.elements['HemsUser/InternetType'].text
+        
+        text_data = '氏名：'<<firstname<<' '<<lastname<<',郵便番号：'<<zipcode<<',住所'<<prefectural<<' '<<municipality<<',番地'<<address1<<' '<<internettype
+
+        json_data = {:text => text_data, :apn => "http://www.ienecons.jp/"}
 
       when "8"  # 住宅情報（ダイワハウスから取得）
-        json_data = {:sts1 => 2, :emo1 => 3, :sts2 => 4, :emo2 => 5}
+        response = PhamiliaBackend::CollectHouse.home_user
+        doc = REXML::Document.new(response)
 
+        buildtype = doc.elements['HemsUser/BuildType'].text
+        ownership = doc.elements['HemsUser/BuildOwnerShip'].text
+        latitude = doc.elements['HemsUser/Latitude'].text
+        longitude = doc.elements['HemsUser/Longitude'].text
+        floorspace = doc.elements['HemsUser/BuildFloorSpace'].text
+        buildyear = doc.elements['HemsUser/BuildYear'].text
+        architect = doc.elements['HemsUser/BuildArchitect'].text
+        annualincome = doc.elements['HemsUser/AnnualIncome'].text
+        leisurecost = doc.elements['HemsUser/LeisureCosts'].text
+        roomsnum = doc.elements['HemsUser/NumberOfRooms'].text
+        electype = doc.elements['HemsUser/AllElectricType'].text
+        waterheater = doc.elements['HemsUser/WaterHeater'].text
+        cookingdevice = doc.elements['HemsUser/CookingDevice'].text
+
+        text_data = '住宅種別：'<<buildtype<<'：：'<<ownership<<',平米：'<<floorspace<<'：：'<<buildyear<<',建築主：'<<architect<<',部屋数：'<<roomsnum<<',契約種別：'<<electype<<',給湯器：'<<waterheater<<',調理器具：'<<cookingdevice
+
+        json_data = {:text => text_data, :apn => "http://www.ienecons.jp/", :latitude => latitude, :longitude => longitude, :annualincome => annualincome, :leisurecost => leisurecost}
+
+      when "9"  # 自治体の街の情報
+        json_data = {:text => "【博物館】連鶴の原典「素雲鶴」復元事業ブログ【10月4日更新】\nhttp://www.city.kuwana.lg.jp/index.cfm/24,44469,235,414,html\n「平成27年度　緑のカーテン自慢！」を紹介します\nhttp://www.city.kuwana.lg.jp/index.cfm/24,47050,282,626,html", :apn => "http://yahoo.co.jp"}
+
+      when "10"  # 蓄電情報
+        response = PhamiliaBackend::CollectHouse.home_user
+        doc = REXML::Document.new(response)
+
+        electricPower = doc.elements['HemsUser/ElectricPowerCompany'].text
+        powerplan = doc.elements['HemsUser/PowerPricePlan'].text
+        powerplan2 = doc.elements['HemsUser/PowerPricePlan2'].text
+        electrictype = doc.elements['HemsUser/AllElectricType'].text
+        waterheater = doc.elements['HemsUser/WaterHeater'].text
+        cookngdevice = doc.elements['HemsUser/CookingDevice'].text
+
+        text_data = '電力会社：'<<electricPower<<',契約プラン：'<<powerplan<<',契約プラン（その他）：'<<powerplan2<<',契約種別：'<<electype<<',給湯器：'<<waterheater<<',調理器具：'<<cookingdevice
+        json_data = {:text => text_data, :apn => "http://www.chuden.co.jp/smt/"}
 
       when "100" # VoIP電話の機能を利用
         response = TwilioBackend::CollectHouse.control_voip_phone
@@ -303,7 +348,6 @@ class PhamiliaController < ApplicationController
         longitude = doc.elements['HemsUser/Longitude'].text
 
         json_data = {:firstname => firstname, :lastname => lastname, :buildtype => buildtype, :ownership => ownership}
-
 
       end
 
