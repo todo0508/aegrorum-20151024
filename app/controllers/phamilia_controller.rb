@@ -245,7 +245,6 @@ class PhamiliaController < ApplicationController
 
       when "2"  # 機器の状態を返却してあげる
         status = 0
-
         res = PhamiliaBackend::ControlAutoWindow.get_autowindows_sts
         xml_doc = Nokogiri::XML(res)
         value = xml_doc.xpath("//resultset/dataset/data/value[@type='value']").xpath("//value").text
@@ -264,9 +263,7 @@ class PhamiliaController < ApplicationController
         if value == "ON"
           status = status + 1
         end
-
         json_data = {:equipment => status}
-
 
       when "3"  # 見守り対象者の状態を返却してあげる
         # アカウントステータス:: account_id, status, emotion
