@@ -340,6 +340,30 @@ class PhamiliaController < ApplicationController
 
         json_data = {:value => value}
 
+      when "12"
+        response = PhamiliaBackend::GetTemprature.get_indoorTemperature
+        doc = REXML::Document.new(response)
+        indor_temp=0
+        doc.elements.each("resultset/dataset/data") do |element|
+          indor_temp = element.elements['value'].text
+        end
+
+        response = PhamiliaBackend::GetTemprature.get_outdoorTemperature
+        doc = REXML::Document.new(response)
+        out_temp=0
+        doc.elements.each("resultset/dataset/data") do |element|
+          out_temp = element.elements['value'].text
+        end
+
+        response = PhamiliaBackend::ControlAirConditioner.get_aircondition_temperature
+        doc = REXML::Document.new(response)
+        elec_temp=0
+        doc.elements.each("resultset/dataset/data") do |element|
+          elec_temp = element.elements['value'].text
+        end
+
+        json_data = {:indor_temp => indor_temp, :out_temp => out_temp, :elec_temp => elec_temp}
+
       when "100" # VoIP電話の機能を利用
         response = TwilioBackend::CollectHouse.control_voip_phone
         doc = REXML::Document.new(response)
