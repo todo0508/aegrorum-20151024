@@ -8,7 +8,7 @@ module Api
 		    if params["type"]
 		      case params["type"]
 		      when "1"
-		        PhamiliaBackend::ControlAirConditioner.get_operationStatus
+		        res = PhamiliaBackend::ControlAirConditioner.get_operationStatus
 		        xml_doc = Nokogiri::XML(res)
 		        value = xml_doc.xpath("//resultset/dataset/data/value[@type='value']").xpath("//value").text
 		      when "2"
@@ -36,11 +36,11 @@ module Api
 		      when "13"
 		        PhamiliaBackend::ControlAirConditioner.get_aircondition_humidity
 		      when "14"
-		        PhamiliaBackend::GetTemprature.get_indoorTemperature
+		        res = PhamiliaBackend::GetTemprature.get_indoorTemperature
 		        xml_doc = Nokogiri::XML(res)
 		        value = xml_doc.xpath("//resultset/dataset/data/value[@type='value']").xpath("//value").text
 		      when "15"
-		        PhamiliaBackend::GetTemprature.get_outdoorTemperature
+		        res = PhamiliaBackend::GetTemprature.get_outdoorTemperature
 		        xml_doc = Nokogiri::XML(res)
 		        value = xml_doc.xpath("//resultset/dataset/data/value[@type='value']").xpath("//value").text
 		      when "16"
@@ -62,7 +62,7 @@ module Api
 		      when "23"
 		        PhamiliaBackend::ControlAutoDoor.get_autodoor_connect_name
 		      when "24"
-		        PhamiliaBackend::ControlAutoShutter.get_autoshutter_sts
+		        res = PhamiliaBackend::ControlAutoShutter.get_autoshutter_sts
 		        xml_doc = Nokogiri::XML(res)
 		        value = xml_doc.xpath("//resultset/dataset/data/value[@type='value']").xpath("//value").text
 		      when "25"
@@ -74,7 +74,7 @@ module Api
 		      when "28"
 		        PhamiliaBackend::ControlAutoShutter.get_autoshutter_connect_name
 		      when "29"
-		        PhamiliaBackend::ControlAutoWindow.get_autowindows_sts
+		        res = PhamiliaBackend::ControlAutoWindow.get_autowindows_sts
 		        xml_doc = Nokogiri::XML(res)
 		        value = xml_doc.xpath("//resultset/dataset/data/value[@type='value']").xpath("//value").text
 		      when "30"
