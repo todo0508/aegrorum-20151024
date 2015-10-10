@@ -270,13 +270,14 @@ class PhamiliaController < ApplicationController
         json_data = {:sts1 => 2, :emo1 => 3, :desc1 => "外出中", :sts2 => 4, :emo2 => 5, :desc2 => "在宅中", :equipment => 3}
 
       when "4"  # ニュース情報を取得
-        json_data = {:text => "今日のランチはどこに行きましょうか", :apn => "http://yahoo.co.jp"}
+        json_data = {:text1 => "別府の温泉宿の料理です", :text2 => "別府の温泉宿の料理です", :text3 => "別府の温泉宿の料理です", :text4 => "別府の温泉宿の料理です", 
+          :text5 => "別府の温泉宿の料理です", :text6 => "別府の温泉宿の料理です", :text7 => "別府の温泉宿の料理です", :text8 => "別府の温泉宿の料理です", :text9 => "別府の温泉宿の料理です"}
 
       when "5"  # グルメ情報を取得
-        json_data = {:text => "別府の温泉宿の料理です", :apn => "http://yahoo.co.jp"}
+        json_data = {:text => "別府の温泉宿の料理です", :apn => "http://yahoo.co.jp", :interest => 0}
 
       when "6"  # 書籍情報を取得
-        json_data = {:text => "坊ちゃん", :apn => "http://yahoo.co.jp"}
+        json_data = {:text => "坊ちゃん", :apn => "http://yahoo.co.jp", :interest => 0}
 
       when "7"  # HEMS事業者から取得
         response = PhamiliaBackend::CollectHouse.home_user
@@ -292,7 +293,7 @@ class PhamiliaController < ApplicationController
         
         text_data = '氏名：'<<firstname<<' '<<lastname<<',郵便番号：'<<zipcode<<',住所'<<prefectural<<' '<<municipality<<',番地'<<address1<<' '<<internettype
 
-        json_data = {:text => text_data, :apn => "http://www.ienecons.jp/"}
+        json_data = {:text => text_data, :apn => "http://www.ienecons.jp/", :sts1 => 2, :emo1 => 3, :desc1 => "外出中", :sts2 => 4, :emo2 => 5, :desc2 => "在宅中", :equipment => 3}
 
       when "8"  # 住宅情報（ダイワハウスから取得）
         response = PhamiliaBackend::CollectHouse.home_user
@@ -317,7 +318,7 @@ class PhamiliaController < ApplicationController
         json_data = {:text => text_data, :apn => "http://www.ienecons.jp/", :latitude => latitude, :longitude => longitude, :annualincome => annualincome, :leisurecost => leisurecost}
 
       when "9"  # 自治体の街の情報
-        json_data = {:text => "【博物館】連鶴の原典「素雲鶴」復元事業ブログ【10月4日更新】\nhttp://www.city.kuwana.lg.jp/index.cfm/24,44469,235,414,html\n「平成27年度　緑のカーテン自慢！」を紹介します\nhttp://www.city.kuwana.lg.jp/index.cfm/24,47050,282,626,html", :apn => "http://yahoo.co.jp"}
+        json_data = {:text => "【博物館】連鶴の原典「素雲鶴」復元事業ブログ【10月4日更新】\nhttp://www.city.kuwana.lg.jp/index.cfm/24,44469,235,414,html\n「平成27年度　緑のカーテン自慢！」を紹介します\nhttp://www.city.kuwana.lg.jp/index.cfm/24,47050,282,626,html", :apn => "http://yahoo.co.jp", :interest => 0}
 
       when "10"  # 蓄電情報
         response = PhamiliaBackend::CollectHouse.home_user
@@ -364,6 +365,10 @@ class PhamiliaController < ApplicationController
 
         json_data = {:indor_temp => indor_temp, :out_temp => out_temp, :elec_temp => elec_temp}
 
+      when "13"
+        json_data = {:uri1 => "http://yahoo.co.jp", :uri2 => "http://yahoo.co.jp", :uri3 => "http://yahoo.co.jp", :uri4 => "http://yahoo.co.jp", 
+          :uri5 => "http://yahoo.co.jp", :uri6 => "http://yahoo.co.jp", :uri7 => "http://yahoo.co.jp", :uri8 => "http://yahoo.co.jp", :uri9 => "別府の温泉宿の料理です"}
+
       when "100" # VoIP電話の機能を利用
         response = TwilioBackend::CollectHouse.control_voip_phone
         doc = REXML::Document.new(response)
@@ -384,6 +389,7 @@ class PhamiliaController < ApplicationController
       render :json => json_data
 
     end
+
   end
 
 
@@ -497,6 +503,23 @@ class PhamiliaController < ApplicationController
         puts "receive data::64"
         puts params['numStep']
         # !!Store
+
+      when "65" # SmartCity
+        puts "receive data::65"
+        puts params['userType']
+        # !!Store
+
+      when "66" # Service
+        puts "receive data::66"
+        puts params['userType']
+        # !!Store
+
+      when "67" # Food
+        puts "receive data::67"
+        puts params['userType']
+        # !!Store
+
+
 
       end
       render json: {:value => value}
