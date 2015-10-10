@@ -388,6 +388,9 @@ class PhamiliaController < ApplicationController
 
 
   def send_message
+
+    puts "send_message :: start!"
+
     if params["type"]
       value = []
 
@@ -461,8 +464,12 @@ class PhamiliaController < ApplicationController
 
       when "50"
         PhamiliaBackend::AgrigateCommand.all_incoming_mode
+        # !!Store
+
       when "51"
         PhamiliaBackend::AgrigateCommand.all_outgoing_mode
+        # !!Store
+
       when "52"
         PhamiliaBackend::AgrigateCommand.power_saving_mode
       when "53"
@@ -473,22 +480,31 @@ class PhamiliaController < ApplicationController
 
       # Batterly Level (Parameters: {"type"=>"60", "battery"=>"-1.000000"})
       when "60"
+        puts "receive data::60"
 
       # Batterly Level (Parameters: {"type"=>"61", "battery"=>"Unknown"})
       when "61"
+        puts "receive data::61"
 
       # Speed Controller (Parameters: {"type"=>"61", "battery"=>"Unknown"})
       when "62"
+        puts "receive data::62"
 
       when "63"
+        puts "receive data::63"
 
       when "64"
-
+        puts "receive data::64"
+        puts params['numStep']
+        # !!Store
 
       end
       render json: {:value => value}
 
     end
+
+    puts "send_message :: end!"
+
   end
 
   def download
