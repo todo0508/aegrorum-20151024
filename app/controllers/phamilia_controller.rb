@@ -339,7 +339,8 @@ class PhamiliaController < ApplicationController
         cookingdevice = doc.elements['HemsUser/CookingDevice'].text
 
         text_data = '電力会社：'<<electricpower<<',契約プラン：'<<powerplan<<',契約プラン（その他）：'<<powerplan2<<',契約種別：'<<electrictype<<',給湯器：'<<waterheater<<',調理器具：'<<cookingdevice
-        json_data = {:text => text_data, :apn => "http://www.chuden.co.jp/smt/"}
+        attend_data = 'これはテストデータです'
+        json_data = {:text => text_data, :apn => "http://www.chuden.co.jp/smt/", :attention => attend_data, :attend_type => 1}
 
       when "11"
         res = PhamiliaBackend::ControlAutoDoor.get_autodoor_sts
@@ -531,6 +532,10 @@ class PhamiliaController < ApplicationController
         puts params['emergency']
         # !!Store
 
+      when "69" # building pro
+        puts "receive data::68"
+        puts params['building']
+        # !!Store
 
       end
       render json: {:value => value}
