@@ -377,6 +377,9 @@ class PhamiliaController < ApplicationController
         json_data = {:uri1 => "http://yahoo.co.jp", :uri2 => "http://yahoo.co.jp", :uri3 => "http://yahoo.co.jp", :uri4 => "http://yahoo.co.jp", 
           :uri5 => "http://yahoo.co.jp", :uri6 => "http://yahoo.co.jp", :uri7 => "http://yahoo.co.jp", :uri8 => "http://yahoo.co.jp", :uri9 => "別府の温泉宿の料理です"}
 
+      when "14"
+        json_data = {:temperature => 32, :huminity => 60, :wing => 4}
+
       when "100" # VoIP電話の機能を利用
         response = TwilioBackend::CollectHouse.control_voip_phone
         doc = REXML::Document.new(response)
@@ -536,6 +539,16 @@ class PhamiliaController < ApplicationController
         puts "receive data::68"
         puts params['building']
         # !!Store
+
+      when "70" # control aircondition
+        puts "receive data::68"
+        puts params['temperature']
+        # !!Store
+        puts params['huminity']
+        # !!Store
+        puts params['wing']
+        # !!Store
+
 
       end
       render json: {:value => value}
