@@ -247,23 +247,29 @@ class PhamiliaController < ApplicationController
         status = 0
         res = PhamiliaBackend::ControlAutoWindow.get_autowindows_sts
         xml_doc = Nokogiri::XML(res)
+        puts xml_doc
         value = xml_doc.xpath("//resultset/dataset/data/value[@type='value']").xpath("//value").text
         if value == "ON"
+          puts "hoge::1"
           status = 1
         end
         res = PhamiliaBackend::ControlAutoShutter.get_autoshutter_sts
         xml_doc = Nokogiri::XML(res)
+        puts xml_doc
         value = xml_doc.xpath("//resultset/dataset/data/value[@type='value']").xpath("//value").text
         if value == "ON"
+          puts "hoge::2"
           status = status + 1
         end
         res = PhamiliaBackend::ControlAutoDoor.get_autodoor_sts
         xml_doc = Nokogiri::XML(res)
+        puts xml_doc
         value = xml_doc.xpath("//resultset/dataset/data/value[@type='value']").xpath("//value").text
         if value == "ON"
+          puts "hoge::3"
           status = status + 1
         end
-        json_data = {:equipment => status}
+        json_data = {:equipment => status, :emergency => 0}
 
       when "3"  # 見守り対象者の状態を返却してあげる
         # アカウントステータス:: account_id, status, emotion
@@ -313,9 +319,10 @@ class PhamiliaController < ApplicationController
         waterheater = doc.elements['HemsUser/WaterHeater'].text
         cookingdevice = doc.elements['HemsUser/CookingDevice'].text
 
+        recommend = 1
         text_data = '住宅種別：'<<buildtype<<'：：'<<ownership<<',平米：'<<floorspace<<'：：'<<buildyear<<',建築主：'<<architect<<',部屋数：'<<roomsnum<<',契約種別：'<<electype<<',給湯器：'<<waterheater<<',調理器具：'<<cookingdevice
 
-        json_data = {:text => text_data, :apn => "http://www.ienecons.jp/", :latitude => latitude, :longitude => longitude, :annualincome => annualincome, :leisurecost => leisurecost}
+        json_data = {:text => text_data, :annualincome => annualincome, :leisurecost => leisurecost, :floorspace => floorspace, :buildyear => buildyear, :architect => architect, :roomsnum => roomsnum, :electype => electype, :waterheater => waterheater, :cookingdevice => cookingdevice, :recommend => recommend}
 
       when "9"  # 自治体の街の情報
         json_data = {:text => "【博物館】連鶴の原典「素雲鶴」復元事業ブログ【10月4日更新】\nhttp://www.city.kuwana.lg.jp/index.cfm/24,44469,235,414,html\n「平成27年度　緑のカーテン自慢！」を紹介します\nhttp://www.city.kuwana.lg.jp/index.cfm/24,47050,282,626,html", :apn => "http://yahoo.co.jp", :interest => 0}
@@ -519,6 +526,10 @@ class PhamiliaController < ApplicationController
         puts params['userType']
         # !!Store
 
+      when "68" # Food
+        puts "receive data::68"
+        puts params['emergency']
+        # !!Store
 
 
       end
