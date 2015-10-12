@@ -378,7 +378,26 @@ class PhamiliaController < ApplicationController
           :uri5 => "http://yahoo.co.jp", :uri6 => "http://yahoo.co.jp", :uri7 => "http://yahoo.co.jp", :uri8 => "http://yahoo.co.jp", :uri9 => "別府の温泉宿の料理です"}
 
       when "14"
-        json_data = {:temperature => 32, :huminity => 60, :wing => 4}
+        response = PhamiliaBackend::ControlAirConditioner.get_aircondition_temperature
+        doc = REXML::Document.new(response)
+        temperature=0
+        doc.elements.each("resultset/dataset/data") do |element|
+          temperature = element.elements['value'].text
+        end
+        response = PhamiliaBackend::ControlAirConditioner.get_aircondition_humidity_sts
+        doc = REXML::Document.new(response)
+        huminity=0
+        doc.elements.each("resultset/dataset/data") do |element|
+          huminity = element.elements['value'].text
+        end
+        response = PhamiliaBackend::ControlAirConditioner.get_aircondition_airflow6_sts
+        doc = REXML::Document.new(response)
+        wing=0
+        doc.elements.each("resultset/dataset/data") do |element|
+          wing = element.elements['value'].text
+        end
+
+        json_data = {:temperature => temperature, :huminity => huminity, :wing => wing}
 
       when "100" # VoIP電話の機能を利用
         response = TwilioBackend::CollectHouse.control_voip_phone
@@ -410,12 +429,107 @@ class PhamiliaController < ApplicationController
 
     if params["type"]
       value = []
-
+      account_id = 1
       case params["type"]
       when "1"
         PhamiliaBackend::ControlAirConditioner.get_operationStatus
       when "2"
-        PhamiliaBackend::ControlAirConditioner.set_aircondition_on
+        response = PhamiliaBackend::ControlAirConditioner.get_aircondition_temperature
+        doc = REXML::Document.new(response)
+        temperature=0
+        doc.elements.each("resultset/dataset/data") do |element|
+          temperature = element.elements['value'].text
+        end
+        response = PhamiliaBackend::ControlAirConditioner.get_aircondition_humidity_sts
+        doc = REXML::Document.new(response)
+        huminity=0
+        doc.elements.each("resultset/dataset/data") do |element|
+          huminity = element.elements['value'].text
+        end
+        response = PhamiliaBackend::ControlAirConditioner.get_aircondition_airflow6_sts
+        doc = REXML::Document.new(response)
+        wing=0
+        doc.elements.each("resultset/dataset/data") do |element|
+          wing = element.elements['value'].text
+        end
+
+        Action.store_aircondition(account_id, params['temperature'], params['huminity'], params['wing'])
+
+        puts "hoge"
+        puts params['temperature'].to_i
+        puts temperature.to_i
+        puts "hoges"
+
+        if params['temperature'].to_i == temperature.to_i && params['huminity'].to_i == huminity.to_i && params['wing'].to_i == wing.to_i
+          puts "hoges111"
+          PhamiliaBackend::ControlAirConditioner.set_aircondition_on
+        else
+          puts "hoges2222"
+          temp = params['temperature'].to_i
+          if temperature != temp
+            case temp
+            when 17
+              PhamiliaBackend::ControlAirConditioner.set_temperature_17
+            when 18
+              PhamiliaBackend::ControlAirConditioner.set_temperature_18
+            when 19
+              PhamiliaBackend::ControlAirConditioner.set_temperature_19
+            when 20
+              PhamiliaBackend::ControlAirConditioner.set_temperature_20
+            when 21
+              PhamiliaBackend::ControlAirConditioner.set_temperature_21
+            when 22
+              PhamiliaBackend::ControlAirConditioner.set_temperature_22
+            when 23
+              PhamiliaBackend::ControlAirConditioner.set_temperature_23
+            when 24
+              PhamiliaBackend::ControlAirConditioner.set_temperature_24
+            when 25
+              PhamiliaBackend::ControlAirConditioner.set_temperature_25
+            when 26
+              PhamiliaBackend::ControlAirConditioner.set_temperature_26
+            when 27
+              PhamiliaBackend::ControlAirConditioner.set_temperature_27
+            when 28
+              PhamiliaBackend::ControlAirConditioner.set_temperature_28
+            when 29
+              PhamiliaBackend::ControlAirConditioner.set_temperature_29
+            when 30
+              PhamiliaBackend::ControlAirConditioner.set_temperature_30
+            when 31
+              PhamiliaBackend::ControlAirConditioner.set_temperature_31
+            when 32
+              PhamiliaBackend::ControlAirConditioner.set_temperature_32
+            end
+          end
+
+          if 50 > params['huminity'].to_i
+              PhamiliaBackend::ControlAirConditioner.get_aircondition_humidity40
+          elsif 60 > params['huminity'].to_i
+              PhamiliaBackend::ControlAirConditioner.get_aircondition_humidity50
+          else
+              PhamiliaBackend::ControlAirConditioner.get_aircondition_humidity60
+          end
+
+          temp = params['wing'].to_i
+          case temp
+          when 0
+              PhamiliaBackend::ControlAirConditioner.get_aircondition_airflow0
+          when 1
+              PhamiliaBackend::ControlAirConditioner.get_aircondition_airflow1
+          when 2
+              PhamiliaBackend::ControlAirConditioner.get_aircondition_airflow2
+          when 3
+              PhamiliaBackend::ControlAirConditioner.get_aircondition_airflow3
+          when 4
+              PhamiliaBackend::ControlAirConditioner.get_aircondition_airflow4
+          when 5
+              PhamiliaBackend::ControlAirConditioner.get_aircondition_airflow5
+          when 6
+              PhamiliaBackend::ControlAirConditioner.get_aircondition_airflow6
+          end
+
+        end
       when "3"
         PhamiliaBackend::ControlAirConditioner.set_aircondition_off
       when "4"
@@ -495,60 +609,83 @@ class PhamiliaController < ApplicationController
         PhamiliaBackend::AgrigateCommand.comsumption_control_mode
 
 
+      when "56"
+        puts "start receive data::56"
+        Action.store_accelerater(account_id, params['accel_x'], params['accel_y'], params['accel_z'])
+        puts "end receive data::56"
+
+      when "57"
+        puts "start receive data::57"
+        Action.store_batteryState(account_id, params['battery'])
+        puts "end receive data::57"
+
+      when "58"
+        puts "start receive data::58"
+        Action.store_brightness(account_id, params['brightness'])
+        puts "end receive data::58"
+
+      when "59"
+        puts "start receive data::59"
+        Action.store_heading(account_id, params['heading'])
+        puts "end receive data::59"
+
       # Batterly Level (Parameters: {"type"=>"60", "battery"=>"-1.000000"})
       when "60"
-        puts "receive data::60"
+        puts "start receive data::60"
+        Action.store_location(account_id, params['latitude'], params['longitude'])
+        puts "end receive data::60"
 
       # Batterly Level (Parameters: {"type"=>"61", "battery"=>"Unknown"})
       when "61"
-        puts "receive data::61"
+        puts "start receive data::61"
+        Action.store_proximity(account_id, params['proximity'])
+        puts "end receive data::61"
 
       # Speed Controller (Parameters: {"type"=>"61", "battery"=>"Unknown"})
       when "62"
-        puts "receive data::62"
+        puts "start receive data::62"
+        Action.store_shake(account_id, params['shake'])
+        puts "end receive data::62"
 
       when "63"
-        puts "receive data::63"
+        puts "start receive data::63"
+        Action.store_speed(account_id, params['speed_new'], params['speed_old'])
+        puts "end receive data::63"
 
       when "64"
-        puts "receive data::64"
-        puts params['numStep']
-        # !!Store
+        puts "start receive data::64"
+        Action.store_nomOfSteps(account_id, params['numStep'])
+        puts "end receive data::64"
 
       when "65" # SmartCity
-        puts "receive data::65"
-        puts params['userType']
-        # !!Store
+        puts "start receive data::65"
+        Action.store_userType(account_id, params['userType'])
+        puts "end receive data::65"
 
       when "66" # Service
-        puts "receive data::66"
-        puts params['userType']
-        # !!Store
+        puts "start receive data::66"
+        Action.store_userType(account_id, params['userType'])
+        puts "end receive data::66"
 
       when "67" # Food
-        puts "receive data::67"
-        puts params['userType']
-        # !!Store
+        puts "start receive data::67"
+        Action.store_userType(account_id, params['userType'])
+        puts "end receive data::67"
 
-      when "68" # Food
-        puts "receive data::68"
-        puts params['emergency']
-        # !!Store
+      when "68"
+        puts "start receive data::68"
+        Action.store_emergency(account_id, params['emergency'])
+        puts "end receive data::68"
 
       when "69" # building pro
-        puts "receive data::68"
-        puts params['building']
-        # !!Store
+        puts "start receive data::69"
+        Action.store_building(account_id, params['building'])
+        puts "end receive data::69"
 
       when "70" # control aircondition
-        puts "receive data::68"
-        puts params['temperature']
-        # !!Store
-        puts params['huminity']
-        # !!Store
-        puts params['wing']
-        # !!Store
-
+        puts "start receive data::70"
+        Action.store_aircondition(account_id, params['temperature'], params['huminity'], params['wing'])
+        puts "end receive data::70"
 
       end
       render json: {:value => value}
