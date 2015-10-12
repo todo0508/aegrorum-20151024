@@ -687,6 +687,11 @@ class PhamiliaController < ApplicationController
         Action.store_aircondition(account_id, params['temperature'], params['huminity'], params['wing'])
         puts "end receive data::70"
 
+      when "71" # control aircondition
+        puts "start receive data::71"
+        Action.store_userType(account_id, params['userType'])
+        puts "end receive data::71"
+
       end
       render json: {:value => value}
 
