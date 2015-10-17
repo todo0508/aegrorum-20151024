@@ -342,7 +342,13 @@ class PhamiliaController < ApplicationController
         json_data = {:text => text_data, :annualincome => annualincome, :leisurecost => leisurecost, :floorspace => floorspace, :buildyear => buildyear, :architect => architect, :roomsnum => roomsnum, :electype => electype, :waterheater => waterheater, :cookingdevice => cookingdevice, :recommend => recommend}
 
       when "9"  # 自治体の街の情報
-        json_data = {:text => "【博物館】連鶴の原典「素雲鶴」復元事業ブログ【10月4日更新】\nhttp://www.city.kuwana.lg.jp/index.cfm/24,44469,235,414,html\n「平成27年度　緑のカーテン自慢！」を紹介します\nhttp://www.city.kuwana.lg.jp/index.cfm/24,47050,282,626,html", :apn => "http://yahoo.co.jp", :interest => 0}
+        text,apn,image,interest = CityCollect::GetItem.getCityInfo
+        if text.length > 0
+          json_d = {:text => text, :apn => apn, :image => image, :interest => interest}
+        else
+          json_d = {:text => "【博物館】連鶴の原典「素雲鶴」復元事業ブログ【10月4日更新】\nhttp://www.city.kuwana.lg.jp/index.cfm/24,44469,235,414,html\n「平成27年度　緑のカーテン自慢！」を紹介します\nhttp://www.city.kuwana.lg.jp/index.cfm/24,47050,282,626,html", :apn => "http://yahoo.co.jp", :interest => 0}
+        end
+        json_data = json_d
 
       when "10"  # 蓄電情報
         response = PhamiliaBackend::CollectHouse.home_user
