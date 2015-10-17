@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<HemsEventList>
+  <HemsUserId>abcdefghijklmnopqrstuvwxyz123456</HemsUserId>
+  <HemsEventProperties>
+    <HemsEvents>
+      <EventType>1</EventType>
+      <EventDate>2014-12-31T24:59:59+09:00</EventDate>
+      <Probability>0.812</Probability>
+      <DateUpdated>2014-12-31T24:59:59+09:00</DateUpdated>
+    </HemsEvents>
+    <HemsEvents>
+      <EventType>2</EventType>
+      <EventDate>2014-12-31T24:59:59+09:00</EventDate>
+      <Probability>0.812</Probability>
+      <DateUpdated>2014-12-31T24:59:59+09:00</DateUpdated>
+    </HemsEvents>
+  </HemsEventProperties>
+</HemsEventList>

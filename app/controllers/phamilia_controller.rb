@@ -352,22 +352,25 @@ class PhamiliaController < ApplicationController
       when "12"
         response = PhamiliaBackend::GetTemprature.get_indoorTemperature
         doc = REXML::Document.new(response)
-        indor_temp=0
-        doc.elements.each("resultset/dataset/data") do |element|
+        indor_temp="0"
+#        doc.elements.each("resultset/dataset/data") do |element|
+        doc.elements.each("data") do |element|
           indor_temp = element.elements['value'].text
         end
 
         response = PhamiliaBackend::GetTemprature.get_outdoorTemperature
         doc = REXML::Document.new(response)
-        out_temp=0
-        doc.elements.each("resultset/dataset/data") do |element|
+        out_temp="0"
+        doc.elements.each("data") do |element|
+#        doc.elements.each("resultset/dataset/data") do |element|
           out_temp = element.elements['value'].text
         end
 
         response = PhamiliaBackend::ControlAirConditioner.get_aircondition_temperature
         doc = REXML::Document.new(response)
-        elec_temp=0
-        doc.elements.each("resultset/dataset/data") do |element|
+        elec_temp="0"
+        doc.elements.each("data") do |element|
+#        doc.elements.each("resultset/dataset/data") do |element|
           elec_temp = element.elements['value'].text
         end
 
@@ -380,19 +383,19 @@ class PhamiliaController < ApplicationController
       when "14"
         response = PhamiliaBackend::ControlAirConditioner.get_aircondition_temperature
         doc = REXML::Document.new(response)
-        temperature=0
+        temperature="0"
         doc.elements.each("resultset/dataset/data") do |element|
           temperature = element.elements['value'].text
         end
         response = PhamiliaBackend::ControlAirConditioner.get_aircondition_humidity_sts
         doc = REXML::Document.new(response)
-        huminity=0
+        huminity="0"
         doc.elements.each("resultset/dataset/data") do |element|
           huminity = element.elements['value'].text
         end
         response = PhamiliaBackend::ControlAirConditioner.get_aircondition_airflow6_sts
         doc = REXML::Document.new(response)
-        wing=0
+        wing="0"
         doc.elements.each("resultset/dataset/data") do |element|
           wing = element.elements['value'].text
         end
@@ -402,7 +405,7 @@ class PhamiliaController < ApplicationController
       when "100" # VoIP電話の機能を利用
         response = TwilioBackend::CollectHouse.control_voip_phone
         doc = REXML::Document.new(response)
-
+=begin
         firstname = doc.elements['HemsUser/HemsUserFirstName'].text
         lastname = doc.elements['HemsUser/HemsUserLastName'].text
         buildtype = doc.elements['HemsUser/BuildType'].text
@@ -411,6 +414,9 @@ class PhamiliaController < ApplicationController
         longitude = doc.elements['HemsUser/Longitude'].text
 
         json_data = {:firstname => firstname, :lastname => lastname, :buildtype => buildtype, :ownership => ownership}
+=end
+        json_data = {:firstname => "", :lastname => "", :buildtype => "", :ownership => ""}
+
 
       end
 

@@ -1,0 +1,5 @@
+            <data type="map">
+                <result type="value">true</result>
+                <key type="value">dischargeableCapacity</key>
+                <value type="value">10000</value>
+            </data>

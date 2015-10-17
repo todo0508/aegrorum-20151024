@@ -1,0 +1,4 @@
+{
+"SavingAdvice": {
+"SavingInfo":"節電アドバイスです。"
+}

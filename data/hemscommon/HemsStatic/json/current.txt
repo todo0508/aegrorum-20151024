@@ -1,0 +1,40 @@
+{
+"HemsStatic": {
+"HemsUserId":"abcdefghijklmnopqrstuvwxyz123456",
+"HouseHold": [
+  {
+"Type":"2",
+"Probability":"0.812",
+"DateUpdated":"2014-12-31T24:59:59+09:00"
+  },
+  {
+"Type":"4",
+"Probability":"0.500",
+"DateUpdated":"2014-12-31T24:59:59+09:00"
+  }
+],
+  "LifeStage": {
+"Type":"4",
+"Probability":"0.901",
+"DateUpdated":"2014-12-31T24:59:59+09:00"
+  },
+  "LifeStyleType": [
+{
+"Type":"6",
+"Probability":"0.781",
+"DateUpdated":"2014-12-31T24:59:59+09:00"
+    },
+{
+"Type":"3",
+"Probability":"0.681",
+"DateUpdated":"2014-12-31T24:59:59+09:00"
+    }
+  ],
+  "LifeStyleTimeZone": {
+"Type":"4",
+"TimeType":"1",
+"TimeData":"06:00-09:00",
+"Probability":"0.901",
+"DateUpdated":"2014-12-31T24:59:59+09:00"
+  }
+}

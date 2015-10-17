@@ -1,0 +1,19 @@
+{
+"HemsEventList": {
+"HemsUserId":"abcdefghijklmnopqrstuvwxyz123456",
+"HemsEvents": [
+{
+"EventType":"1",
+"EventDate":"2014-12-31T24:59:59+09:00",
+"Probability":"0.812",
+"DateUpdated":"2014-12-31T24:59:59+09:00",
+},
+{
+"EventType":"2",
+"EventDate":"2014-12-31T24:59:59+09:00",
+"Probability":"0.812",
+"DateUpdated":"2014-12-31T24:59:59+09:00",
+}
+]
+}
+}

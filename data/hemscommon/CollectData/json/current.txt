@@ -1,0 +1,71 @@
+{
+"CollectDataList": [
+{
+  "Page": 0,
+  "TotalPages": 11,
+  "ItemsPerPage": 100,
+  "TotalItems": 1001,
+  "Start": 0,
+  "End": 99,
+  "Uri":"\/hemscommon\/ver1.0\/ServiceConnections\/1234567890abcdefghijklmnopqrstuv\/CollectData.json?Page=0&ItemsPerPage=100",
+  "FirstPageUri":"\/hemscommon\/ver1.0\/ServiceConnections\/1234567890abcdefghijklmnopqrstuv\/CollectData.json?Page=0&ItemsPerPage=100",
+  "PreviousPageUri": null,
+  "NextPageUri":"\/hemscommon\/ver1.0\/ServiceConnections\/1234567890abcdefghijklmnopqrstuv\/CollectData.json?&Page=1&ItemsPerPage=100",
+  "LastPageUri":"\/hemscommon\/ver1.0\/ServiceConnections\/1234567890abcdefghijklmnopqrstuv\/CollectData.json?Page=10&ItemsPerPage=100",
+  "CollectDatum": [
+  {
+    "CollectDataId":"",
+    "DateCreated":"2014-12-31T12:49:56+09:00",
+    "Timestamp":"2014-12-31T12:49:56+09:00",
+    "ServiceConnection":"",
+    "HemsUser":"\/hemscommon\/ver1.0\/ServiceConnections\/1234567890abcdefghijklmnopqrstuv\/HemsUser.json",
+    "NodeId":"00-00-00-00-00-01",
+    "Eoj":"0x028701",
+    "Esv":"0x72",
+    "CollectProperty": [
+      {"Epc":"0x80","Edt":"0x30"},
+      {"Epc":"0x82","Edt":"0x00004500"},
+      {"Epc":"0x8A","Edt":"0xFFFFFF"},
+      {"Epc":"0x97","Edt":"0x0101"},
+      {"Epc":"0x98","Edt":"0x07DE0101"},
+      {"Epc":"0x9D","Edt":"0x00"},
+      {"Epc":"0x9E","Edt":"0x00"},
+      {"Epc":"0x9F","Edt":"0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"},
+      {"Epc":"0xD7","Edt":"0x01"},
+      {"Epc":"0xE0","Edt":"0x837875F3"},
+      {"Epc":"0xE1","Edt":"0x00"},
+      {"Epc":"0xE3","Edt":"0x7464932F"},
+      {"Epc":"0xE5","Edt":"0x01"},
+      {"Epc":"0xE7","Edt":"0x77777777"},
+      {"Epc":"0xE8","Edt":"0x66666666"},
+      {"Epc":"0xEA","Edt":"0x07DE010100000077777777"},
+      {"Epc":"0xEB","Edt":"0x07DE010100000077777777"}
+    ],
+    "Uri":""
+  },
+  {
+    "CollectDataId":"",
+    "DateCreated":"2014-12-31T12:49:56+09:00",
+    "Timestamp":"2014-12-31T12:49:56+09:00",
+    "ServiceConnection":"",
+    "HemsUser":"\/hemscommon\/ver1.0\/ServiceConnections\/1234567890abcdefghijklmnopqrstuv\/HemsUser.json",
+    "NodeId":"00-00-00-00-00-01",
+    "Eoj":"0x028701",
+    "Esv":"0x72",
+    "CollectProperty": [
+      {"Epc":"0x80","Edt":"0x30"},
+      {"Epc":"0x82","Edt":"0x00004500"},
+      {"Epc":"0x8A","Edt":"0xFFFFFF"},
+      {"Epc":"0x97","Edt":"0x0101"},
+      {"Epc":"0x98","Edt":"0x07DE0101"},
+      {"Epc":"0x9D","Edt":"0x00"},
+      {"Epc":"0x9E","Edt":"0x00"},
+      {"Epc":"0xD7","Edt":"0x01"},
+      {"Epc":"0xE0","Edt":"0x837875F3"},
+      {"Epc":"0xE1","Edt":"0x00"},
+    ],
+    "Uri":""
+  },
+}
+]
+}

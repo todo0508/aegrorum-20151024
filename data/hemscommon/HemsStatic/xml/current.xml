@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<HemsStatic>
+<HemsUserId>abcdefghijklmnopqrstuvwxyz123456</HemsUserId>
+<HouseHoldProperties>
+<HouseHold>
+<Type>2</Type>
+<Probability>0.812</Probability>
+<DateUpdated>2014-12-31T24:59:59+09:00</DateUpdated>
+</HouseHold>
+<HouseHold>
+<Type>4</Type>
+<Probability>0.500</Probability>
+<DateUpdated>2014-12-31T24:59:59+09:00</DateUpdated>
+</HouseHold>
+</HouseHoldProperties>
+<LifeStageProperties>
+  <LifeStage>
+<Type>4</Type>
+<Probability>0.901</Probability>
+<DateUpdated>2014-12-31T24:59:59+09:00</DateUpdated>
+  </LifeStage>
+</LifeStageProperties>
+  <LifeStyleTypeProperties>
+  <LifeStyleType>
+<Type>6</Type>
+<Probability>0.781</Probability>
+<DateUpdated>2014-12-31T24:59:59+09:00</DateUpdated>
+    </LifeStyleType>
+  <LifeStyleType>
+<Type>3</Type>
+<Probability>0.681</Probability>
+<DateUpdated>2014-12-31T24:59:59+09:00</DateUpdated>
+    </LifeStyleType>
+  </LifeStyleTypeProperties>
+  <LifeStyleTimeZoneProperties>
+   <LifeStyleTimeZone>
+<Type>4</Type>
+<TimeType>1</TimeType>
+<TimeData>06:00-09:00</TimeData>
+<Probability>0.901</Probability>
+<DateUpdated>2014-12-31T24:59:59+09:00</DateUpdated>
+  </LifeStyleTimeZone>
+  </LifeStyleTimeZoneProperties>
+</HemsStatic>

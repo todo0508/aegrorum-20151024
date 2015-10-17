@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<HemsAnalyseList>
+<HemsUserId>abcdefghijklmnopqrstuvwxyz123456</HemsUserId>
+<HemsAnalyseProperties>
+<HemsAnalyses>
+<StatusType>2</StatusType>
+<StatusDate>2014-12-31T24:59:59+09:00</StatusDate>
+<Probability>0.812</Probability>
+<DateUpdated>2014-12-31T24:59:59+09:00</DateUpdated>
+</HemsAnalyses>
+<HemsAnalyses>
+<StatusType>3</StatusType>
+<StatusDate>2014-12-31T24:59:59+09:00</StatusDate>
+<Probability>0.812</Probability>
+<DateUpdated>2014-12-31T24:59:59+09:00</DateUpdated>
+</HemsAnalyses>
+</HemsAnalyseProperties>
+</HemsAnalyseList>

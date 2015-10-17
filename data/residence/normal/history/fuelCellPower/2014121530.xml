@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resultset type="map">
+
+<result type="value">true</result>
+
+<size type="value">49</size>
+
+<dataset type="list">
+
+
+<data type="map" no="0">
+<key type="value">201412150000</key>
+
+<value type="value">1677627</value>
+</data>
+
+<data type="map" no="1">
+<key type="value">201412150030</key>
+
+<value type="value">1677753</value>
+</data>
+
+<data type="map" no="2">
+<key type="value">201412150100</key>
+
+<value type="value">1677883</value>
+</data>
+
+<data type="map" no="3">
+<key type="value">201412150130</key>
+
+<value type="value">1678016</value>
+</data>
+
+<data type="map" no="4">
+<key type="value">201412150200</key>
+
+<value type="value">1678145</value>
+</data>
+
+<data type="map" no="5">
+<key type="value">201412150230</key>
+
+<value type="value">1678305</value>
+</data>
+
+<data type="map" no="6">
+<key type="value">201412150300</key>
+
+<value type="value">1678476</value>
+</data>
+
+<data type="map" no="7">
+<key type="value">201412150330</key>
+
+<value type="value">1678743</value>
+</data>
+
+<data type="map" no="8">
+<key type="value">201412150400</key>
+
+<value type="value">1679019</value>
+</data>
+
+<data type="map" no="9">
+<key type="value">201412150430</key>
+
+<value type="value">1679169</value>
+</data>
+
+<data type="map" no="10">
+<key type="value">201412150500</key>
+
+<value type="value">1679285</value>
+</data>
+
+<data type="map" no="11">
+<key type="value">201412150530</key>
+
+<value type="value">1679414</value>
+</data>
+
+<data type="map" no="12">
+<key type="value">201412150600</key>
+
+<value type="value">1679541</value>
+</data>
+
+<data type="map" no="13">
+<key type="value">201412150630</key>
+
+<value type="value">1679720</value>
+</data>
+
+<data type="map" no="14">
+<key type="value">201412150700</key>
+
+<value type="value">1679925</value>
+</data>
+
+<data type="map" no="15">
+<key type="value">201412150730</key>
+
+<value type="value">1680074</value>
+</data>
+
+<data type="map" no="16">
+<key type="value">201412150800</key>
+
+<value type="value">1680225</value>
+</data>
+
+<data type="map" no="17">
+<key type="value">201412150830</key>
+
+<value type="value">1680346</value>
+</data>
+
+<data type="map" no="18">
+<key type="value">201412150900</key>
+
+<value type="value">1680473</value>
+</data>
+
+<data type="map" no="19">
+<key type="value">201412150930</key>
+
+<value type="value">1680603</value>
+</data>
+
+<data type="map" no="20">
+<key type="value">201412151000</key>
+
+<value type="value">1680735</value>
+</data>
+
+<data type="map" no="21">
+<key type="value">201412151030</key>
+
+<value type="value">1680991</value>
+</data>
+
+<data type="map" no="22">
+<key type="value">201412151100</key>
+
+<value type="value">1681274</value>
+</data>
+
+<data type="map" no="23">
+<key type="value">201412151130</key>
+
+<value type="value">1681495</value>
+</data>
+
+<data type="map" no="24">
+<key type="value">201412151200</key>
+
+<value type="value">1681696</value>
+</data>
+
+<data type="map" no="25">
+<key type="value">201412151230</key>
+
+<value type="value">1681855</value>
+</data>
+
+<data type="map" no="26">
+<key type="value">201412151300</key>
+
+<value type="value">1681970</value>
+</data>
+
+<data type="map" no="27">
+<key type="value">201412151330</key>
+
+<value type="value">1682101</value>
+</data>
+
+<data type="map" no="28">
+<key type="value">201412151400</key>
+
+<value type="value">1682226</value>
+</data>
+
+<data type="map" no="29">
+<key type="value">201412151430</key>
+
+<value type="value">1682375</value>
+</data>
+
+<data type="map" no="30">
+<key type="value">201412151500</key>
+
+<value type="value">1682572</value>
+</data>
+
+<data type="map" no="31">
+<key type="value">201412151530</key>
+
+<value type="value">1682732</value>
+</data>
+
+<data type="map" no="32">
+<key type="value">201412151600</key>
+
+<value type="value">1682899</value>
+</data>
+
+<data type="map" no="33">
+<key type="value">201412151630</key>
+
+<value type="value">1683155</value>
+</data>
+
+<data type="map" no="34">
+<key type="value">201412151700</key>
+
+<value type="value">1683414</value>
+</data>
+
+<data type="map" no="35">
+<key type="value">201412151730</key>
+
+<value type="value">1683663</value>
+</data>
+
+<data type="map" no="36">
+<key type="value">201412151800</key>
+
+<value type="value">1684092</value>
+</data>
+
+<data type="map" no="37">
+<key type="value">201412151830</key>
+
+<value type="value">1684502</value>
+</data>
+
+<data type="map" no="38">
+<key type="value">0</key>
+
+<value type="value">1684696</value>
+</data>
+
+<data type="map" no="39">
+<key type="value">201412151930</key>
+
+<value type="value">1684849</value>
+</data>
+
+<data type="map" no="40">
+<key type="value">201412152000</key>
+
+<value type="value">1684987</value>
+</data>
+
+<data type="map" no="41">
+<key type="value">201412152030</key>
+
+<value type="value">1685124</value>
+</data>
+
+<data type="map" no="42">
+<key type="value">201412152200</key>
+
+<value type="value">1685261</value>
+</data>
+
+<data type="map" no="43">
+<key type="value">201412152130</key>
+
+<value type="value">1685413</value>
+</data>
+
+<data type="map" no="44">
+<key type="value">201412152200</key>
+
+<value type="value">1685558</value>
+</data>
+
+<data type="map" no="45">
+<key type="value">201412152230</key>
+
+<value type="value">1685787</value>
+</data>
+
+<data type="map" no="46">
+<key type="value">201412152300</key>
+
+<value type="value">1686040</value>
+</data>
+
+<data type="map" no="47">
+<key type="value">201412152330</key>
+
+<value type="value">1686313</value>
+</data>
+
+<data type="map" no="48">
+<key type="value">201412160000</key>
+
+<value type="value">1686590</value>
+</data>
+
+</dataset>
+
+</resultset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <resultset type="map">
+        <result type="value">true</result>
+        <dataset type="list">
+{0}
+        </dataset>
+    </resultset>

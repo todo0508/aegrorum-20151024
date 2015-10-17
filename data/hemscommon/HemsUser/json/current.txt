@@ -1,0 +1,31 @@
+{
+"HemsUser":{
+  "HemsUserId":"abcdefghijklmnopqrstuvwx12345678",
+  "DateCreated":"2014-12-31T01:16:24+09:00",
+  "DateUpdated":"2014-12-31T01:16:24+09:00",
+  "Service":"",
+  "ServiceConnection":"",
+  "HemsUserName": "山田　太郎",
+  "TelephoneNumber": "0312345678",
+  "MailAddress": "y.taro@yahoo.ne.jp",
+  "ZipCode": "1011234",
+  "BirthYear":"1980",
+  "Sex":"男性",
+  "WorkType":"会社員",
+  "FamilyStructure":"4",
+  "FamillyData":[
+    {"BirthYear":"1995","Sex":"男性","WorkType":"会社員"},
+    {"BirthYear":"2010","Sex":"女性","WorkType":"中学生以下"}
+  ],
+  "ElectricPowerCompany":"東京電力",
+  "PowerPricePlan":"従量電灯B(10A)",
+  "GasType":"都市ガス",
+  "AllElectricType":"ガス併用",
+  "WaterHeater":"一般給湯器",
+  "CookingDevice":"ガスコンロ",
+  "DeviceList1":"11111111111111111999999999999999",
+  "DeviceList2":"11199999999999999999999999999999",
+  "DeviceList3":"11199999999999999999999999999999",
+  "Uri":"\/hemscommon\/ver1.0\/ServiceConnections\/abcdefghijklmnopqrstuvwx12345678\/HemsUser.json"
+}
+}

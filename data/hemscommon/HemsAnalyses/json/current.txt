@@ -1,0 +1,19 @@
+{
+"HemsAnalyseList": {
+"HemsUserId":"abcdefghijklmnopqrstuvwxyz123456",
+"HemsAnalyses": [
+{
+"StatusType":"2",
+"StatusDate":"2014-12-31T24:59:59+09:00",
+"Probability":"0.812",
+"DateUpdated":"2014-12-31T24:59:59+09:00",
+},
+{
+"StatusType":"3",
+"StatusDate":"2014-12-31T24:59:59+09:00",
+"Probability":"0.812",
+"DateUpdated":"2014-12-31T24:59:59+09:00",
+}
+]
+}
+}
