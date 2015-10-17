@@ -19,13 +19,14 @@ module CookingCollect
         results_available = doc.elements['results/results_returned'].text.to_i
 
         random = Random.new
-		index = random.rand(0..(results_available-1))
+    		index = random.rand(0..(results_available-1))
         text = ""
         apn = ""
+        image = ""
         interest = 0
         i = 0
-		doc.elements.each('results/shop') do |sle|
-			if i == index
+		    doc.elements.each('results/shop') do |sle|
+			    if i == index
 	        	text = "店名：" << sle.elements['name'].text << "\n住所：" << \
 	        		sle.elements['address'].text << "\n" << sle.elements['genre/name'].text << "\n" << \
 	           		sle.elements['genre/catch'].text << "\n" << sle.elements['catch'].text << "\n" << sle.elements['child'].text
@@ -33,12 +34,13 @@ module CookingCollect
 	        	if apn == nil
 		        	apn = sle.elements['urls/mobile'].text
 	        	end
+	        	image = sle.elements['photo/mobile/l'].text
 	        	interest = 1
 	        end
         	i += 1
         end
 
-        return text,apn,interest
+        return text,apn,image,interest
 	end
 
   	def self.getFoodStore_ori

@@ -276,20 +276,31 @@ class PhamiliaController < ApplicationController
         json_data = {:sts1 => 2, :emo1 => 3, :desc1 => "外出中", :sts2 => 4, :emo2 => 5, :desc2 => "在宅中", :equipment => 3}
 
       when "4"  # ニュース情報を取得
-        json_data = {:text1 => "別府の温泉宿の料理です", :text2 => "別府の温泉宿の料理です", :text3 => "別府の温泉宿の料理です", :text4 => "別府の温泉宿の料理です", 
-          :text5 => "別府の温泉宿の料理です", :text6 => "別府の温泉宿の料理です", :text7 => "別府の温泉宿の料理です", :text8 => "別府の温泉宿の料理です", :text9 => "別府の温泉宿の料理です"}
+        text1,text2,text3,text4,text5,text6,text7,text8,text9,uri1,uri2,uri3,uri4,uri5,uri6,uri7,uri8,uri9 = OpenNews::GetArticles.getNewsItem
+
+        json_data = {:text1 => text1, :text2 => text2, :text3 => text3, :text4 => text4, 
+          :text5 => text5, :text6 => text6, :text7 => text7, :text8 => text8, 
+          :text9 => text9, :uri1 => uri1, :uri2 => uri2, :uri3 => uri3, 
+          :uri4 => uri4, :uri5 => uri5, :uri6 => uri6, :uri7 => uri7, 
+          :uri8 => uri8, :uri9 => uri9}
 
       when "5"  # グルメ情報を取得
-        text,apn,interest = CookingCollect::GetMenu.getFoodStore
+        text,apn,image,interest = CookingCollect::GetMenu.getFoodStore
         if text.length > 0
-          json_d = {:text => text, :apn => apn, :interest => interest}
+          json_d = {:text => text, :apn => apn, :image => image, :interest => interest}
         else
-          json_d = {:text => "松阪肉牛・近江肉牛販売指定店\n焼肉 京城 水道橋店\n\n★水道橋駅徒歩2分★焼肉店で初めて！松阪牛・近江牛販売指定店の看板を許された老舗です。■宴会コースは4000円～ご用意！", :apn => "http://s.tabelog.com/tokyo/A1310/A131003/13000222/", :interest => 0}
+          json_d = {:text => "松阪肉牛・近江肉牛販売指定店\n焼肉 京城 水道橋店\n\n★水道橋駅徒歩2分★焼肉店で初めて！松阪牛・近江牛販売指定店の看板を許された老舗です。■宴会コースは4000円～ご用意！", :apn => "http://s.tabelog.com/tokyo/A1310/A131003/13000222/", :image => "", :interest => 0}
         end
         json_data = json_d
 
       when "6"  # 書籍情報を取得
-        json_data = {:text => "坊ちゃん", :apn => "http://yahoo.co.jp", :interest => 0}
+        text,apn,image,interest = BookingCollect::GetItem.getBook
+        if text.length > 0
+          json_d = {:text => text, :apn => apn, :image => image, :interest => interest}
+        else
+          json_d = {:text => "坊ちゃん", :apn => "http://yahoo.co.jp" ,:interest => 0}
+        end
+        json_data = json_d
 
       when "7"  # HEMS事業者から取得
         response = PhamiliaBackend::CollectHouse.home_user
