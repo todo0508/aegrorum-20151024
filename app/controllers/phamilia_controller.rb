@@ -362,7 +362,7 @@ class PhamiliaController < ApplicationController
         cookingdevice = doc.elements['HemsUser/CookingDevice'].text
 
         text_data = '電力会社：'<<electricpower<<',契約プラン：'<<powerplan<<',契約プラン（その他）：'<<powerplan2<<',契約種別：'<<electrictype<<',給湯器：'<<waterheater<<',調理器具：'<<cookingdevice
-        attend_data = 'これはテストデータです'
+        attend_data = '節約のアドバイスサービスを来月から開始します。'
         json_data = {:text => text_data, :apn => "http://www.chuden.co.jp/smt/", :attention => attend_data, :attend_type => 1}
 
       when "11"
@@ -427,7 +427,7 @@ class PhamiliaController < ApplicationController
 
       when "100" # VoIP電話の機能を利用
         response = TwilioBackend::CollectHouse.control_voip_phone
-        doc = REXML::Document.new(response)
+#        doc = REXML::Document.new(response)
 =begin
         firstname = doc.elements['HemsUser/HemsUserFirstName'].text
         lastname = doc.elements['HemsUser/HemsUserLastName'].text

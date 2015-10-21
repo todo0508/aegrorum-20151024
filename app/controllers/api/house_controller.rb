@@ -88,10 +88,13 @@ module Api
 
 		      when "100"
 		        TwilioBackend::CollectHouse.control_voip_phone
+		      when "101"
+				value = '<?xml version="1.0" encoding="UTF-8"?><Response><Say language="ja-jp">Twilioへようこそ。</Say></Response>'
 		      end
 		    end
 
-           	render json: {:value => value}
+           	render xml: value
+#           	render json: {:value => value}
         end
     end
 end
